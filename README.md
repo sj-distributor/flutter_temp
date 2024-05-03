@@ -126,7 +126,7 @@ lib/
 |-- utils                 # 工具类
 |-- main.dart             # 应用入口文件
 |-- providers_setup.dart  # 数据文件设置入口
-|-- routes.dart.dart      # 路由入口文件
+|-- routes.dart           # 路由入口文件
 
 ```
 ### 代理

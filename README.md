@@ -111,7 +111,6 @@
 
 ```
 
-## Getting Started
 ### 目录结构
 ```
 lib/
@@ -129,6 +128,9 @@ lib/
 |-- routes.dart           # 路由入口文件
 
 ```
+### 辅助
+- 修改领域层（domains）里面的Entity后，执行代码生成命令： `dart run build_runner build`
+  
 ### 代理
 ```
 # export http_proxy=http://127.0.0.1:1087

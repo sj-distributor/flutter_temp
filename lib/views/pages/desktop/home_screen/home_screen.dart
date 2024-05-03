@@ -60,13 +60,12 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 final currentUser = userStore.user;
-                print("currentUser.isEmpty ${currentUser.isEmpty}");
-                if (currentUser == null) {
+                if (currentUser.isEmpty) {
                   ToastUtils.showToast("current user is empty");
                   return;
                 }
                 final user = UpdateUserRequest()
-                  ..id = currentUser.id
+                  ..id = currentUser!.id
                   ..name = "marlon-2"
                   ..email = "marlon@163.com";
 

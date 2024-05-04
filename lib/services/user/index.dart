@@ -8,3 +8,4 @@ export 'create_user_response.dart';
 export 'update_user_request.dart';
 export 'update_user_response.dart';
 export 'user_service.dart';
+export 'user_api.dart';

@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
     final userStore = context.watch<IUserStore>();
 
     // User用例
-    final useUser = UserUseCase(userService, userStore);
+    final useUser = UserUseCase(userService: userService, userStore: userStore);
 
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +51,12 @@ class HomeScreen extends StatelessWidget {
                   ..email = "marlon@126.com"
                   ..products = [];
 
-                userStore.user = await useUser.create(user);
+                final (isOk, errorText) = await useUser.create(user);
+                if (!isOk) {
+                  ToastUtils.showToast(errorText);
+                  return;
+                }
+
                 print("创建用户为：${userStore.user?.toJson()}");
               },
               child: const Text('创建用户'),

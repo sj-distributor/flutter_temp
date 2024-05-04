@@ -5,6 +5,7 @@
  */
 
 import 'package:flutter_temp/abstracts/index.dart';
+import 'package:flutter_temp/domains/index.dart';
 
 import '../index.dart';
 
@@ -13,10 +14,14 @@ class UserService implements IUserService {
   @override
   Future<ICreateUserResponse?> create(ICreateUserRequest request) async {
     // 这里是api请求
-    final result = CreateUserResponse()
-      ..id = request.id
-      ..name = request.name
-      ..email = request.email;
+    final result = await UserApi.create(request);
+
+    final cart = Cart()
+      ..id = 123
+      ..name = "cart";
+
+    result?.cart = cart;
+
     return result;
   }
 
@@ -27,6 +32,7 @@ class UserService implements IUserService {
       ..id = request.id
       ..name = request.name
       ..email = request.email;
+
     return result;
   }
 

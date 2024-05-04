@@ -6,7 +6,7 @@
 import 'package:flutter_temp/abstracts/index.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'index.dart';
+import 'base_domain.dart';
 
 part 'user_domain.g.dart';
 

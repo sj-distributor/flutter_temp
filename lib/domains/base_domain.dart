@@ -20,3 +20,8 @@ class BaseDomain implements IBaseEntity {
       _$BaseDomainFromJson(json);
   Map<String, dynamic> toJson() => _$BaseDomainToJson(this);
 }
+
+// Entity扩展
+extension GenericExtension<T> on T? {
+  bool get isEmpty => this == null;
+}

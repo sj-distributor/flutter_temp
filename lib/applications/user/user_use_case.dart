@@ -23,7 +23,7 @@ class UserUseCase {
   Future<(bool, String)> create(ICreateUserRequest request) async {
     // setp01
     final user = await userService?.create(request);
-    if (!user.isEmpty) {
+    if (user.isEmpty) {
       return (false, "user is empty");
     }
 

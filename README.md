@@ -55,10 +55,14 @@
     @override
     Future<ICreateUserResponse?> create(ICreateUserRequest request) async {
       // 这里是api请求
-      final result = CreateUserResponse()
-        ..id = request.id
-        ..name = request.name
-        ..email = request.email;
+      final result = await UserApi.create(request);
+
+      final cart = Cart()
+        ..id = 123
+        ..name = "cart";
+
+      result?.cart = cart;
+
       return result;
     }
 
@@ -69,6 +73,7 @@
         ..id = request.id
         ..name = request.name
         ..email = request.email;
+
       return result;
     }
   }
@@ -79,33 +84,36 @@
 
   // UserUseCase用例
   class UserUseCase {
-    final IUserService userService; // 注入的是IUserService接口，而不是UserService
-    final IUserStore userStore; // 注入的是IUserStore接口，而不是UserStore
+    final IUserService? userService;
+    final IUserStore? userStore;
 
-    UserUseCase(this.userService, this.userStore);
+    UserUseCase({
+      this.userService,
+      this.userStore,
+    });
 
     // 创建用户
-    Future<ICreateUserResponse?> create(ICreateUserRequest request) async {
-      // 调用user service
-      final user = await userService.create(request);
+    Future<(bool, String)> create(ICreateUserRequest request) async {
+      // setp01
+      final user = await userService?.create(request);
       if (user.isEmpty) {
-        return null;
+        return (false, "user is empty");
       }
 
-      // 其他操作
-      final result = CreateUserResponse.fromJson(user!.toJson());
-      final cart = Cart()
-        ..id = 123
-        ..name = "cart";
+      // 修改user缓存数据
+      userStore?.user = user;
 
-      result.cart = cart;
+      // setp02
 
-      return result;
+      // setp03
+
+      print("user ${jsonEncode(user)}");
+      return (true, "");
     }
 
-    // 更新用户
+    // 更新用户 未做流程处理，直接忽略
     Future<IUpdateUserResponse?> update(IUpdateUserRequest request) async {
-      return await userService.update(request);
+      return await userService?.update(request);
     }
   }
 
@@ -120,8 +128,8 @@ lib/
 |-- providers             # 数据层
 |-- services              # 适配器层
 |-- views/                # 表示层
-|   |-- pages/            # 屏幕/页面
-|   |-- widgets/          # 可复用的UI组件
+|   |-- pages             # 屏幕/页面
+|   |-- widgets           # 可复用的UI组件
 |-- utils                 # 工具类
 |-- main.dart             # 应用入口文件
 |-- providers_setup.dart  # 数据文件设置入口

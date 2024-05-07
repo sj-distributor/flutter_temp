@@ -5,8 +5,6 @@
  */
 
 // 应用层
-import 'dart:convert';
-
 import 'package:flutter_temp/abstracts/index.dart';
 import 'package:flutter_temp/domains/index.dart';
 
@@ -27,14 +25,11 @@ class UserUseCase {
       return (false, "user is empty");
     }
 
+    // setp02
     // 修改user缓存数据
     userStore?.user = user;
 
-    // setp02
-
     // setp03
-
-    print("user ${jsonEncode(user)}");
     return (true, "");
   }
 

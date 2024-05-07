@@ -11,19 +11,20 @@ part 'create_user_request.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class CreateUserRequest implements ICreateUserRequest {
-  CreateUserRequest();
+  CreateUserRequest({
+    required this.id,
+    required this.name,
+    required this.email,
+  });
 
   @override
-  @JsonKey(defaultValue: 0)
-  int id = 0;
+  int id;
 
   @override
-  @JsonKey(defaultValue: "")
-  String name = "";
+  String name;
 
   @override
-  @JsonKey(defaultValue: "")
-  String email = "";
+  String email;
 
   @JsonKey(defaultValue: [])
   List<Product> products = [];

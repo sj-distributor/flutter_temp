@@ -138,6 +138,7 @@ lib/
 ```
 ### 辅助
 - 修改领域层（domains）里面的Entity后，执行代码生成命令： `dart run build_runner build`
+- 测试 [常用断言类型](./docs/test.md)
   
 ### 代理
 ```

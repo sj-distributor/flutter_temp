@@ -45,11 +45,11 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                final user = CreateUserRequest()
-                  ..id = 111
-                  ..name = "marlon"
-                  ..email = "marlon@126.com"
-                  ..products = [];
+                final user = CreateUserRequest(
+                  id: 111,
+                  name: "marlon",
+                  email: "marlon@126.com",
+                );
 
                 final (isOk, errorText) = await useUser.create(user);
                 if (!isOk) {
@@ -69,10 +69,11 @@ class HomeScreen extends StatelessWidget {
                   ToastUtils.showToast("current user is empty");
                   return;
                 }
-                final user = UpdateUserRequest()
-                  ..id = currentUser!.id
-                  ..name = "marlon-2"
-                  ..email = "marlon@163.com";
+                final user = UpdateUserRequest(
+                  id: currentUser!.id,
+                  name: "marlon-2",
+                  email: "marlon@163.com",
+                );
 
                 print("更新前用户为：${userStore.user?.toJson()}");
                 userStore.user = await useUser.update(user);

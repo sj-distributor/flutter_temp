@@ -7,10 +7,11 @@ part of 'update_user_request.dart';
 // **************************************************************************
 
 UpdateUserRequest _$UpdateUserRequestFromJson(Map<String, dynamic> json) =>
-    UpdateUserRequest()
-      ..id = (json['id'] as num?)?.toInt() ?? 0
-      ..name = json['name'] as String? ?? ''
-      ..email = json['email'] as String? ?? '';
+    UpdateUserRequest(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      email: json['email'] as String,
+    );
 
 Map<String, dynamic> _$UpdateUserRequestToJson(UpdateUserRequest instance) =>
     <String, dynamic>{

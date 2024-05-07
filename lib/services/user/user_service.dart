@@ -6,13 +6,12 @@
 
 import 'package:flutter_temp/abstracts/index.dart';
 import 'package:flutter_temp/domains/index.dart';
-
-import '../index.dart';
+import 'package:flutter_temp/services/index.dart';
 
 /// 适配器层
 class UserService implements IUserService {
   @override
-  Future<ICreateUserResponse?> create(ICreateUserRequest request) async {
+  Future<CreateUserResponse?> create(ICreateUserRequest request) async {
     // 这里是api请求
     final result = await UserApi.create(request);
 
@@ -26,7 +25,7 @@ class UserService implements IUserService {
   }
 
   @override
-  Future<IUpdateUserResponse> update(IUpdateUserRequest request) async {
+  Future<UpdateUserResponse> update(IUpdateUserRequest request) async {
     // 这里是api请求
     final result = UpdateUserResponse()
       ..id = request.id

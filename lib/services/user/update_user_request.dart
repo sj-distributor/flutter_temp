@@ -10,19 +10,20 @@ part 'update_user_request.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class UpdateUserRequest implements IUpdateUserRequest {
-  UpdateUserRequest();
+  UpdateUserRequest({
+    required this.id,
+    required this.name,
+    required this.email,
+  });
 
   @override
-  @JsonKey(defaultValue: 0)
-  int id = 0;
+  int id;
 
   @override
-  @JsonKey(defaultValue: "")
-  String name = "";
+  String name;
 
   @override
-  @JsonKey(defaultValue: "")
-  String email = "";
+  String email;
 
   factory UpdateUserRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateUserRequestFromJson(json);

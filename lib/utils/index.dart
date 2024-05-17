@@ -4,6 +4,6 @@
  * @Date: 2024-04-24 20:45:43
  */
 
-export 'device.dart';
+export 'device_utils.dart';
 export 'toast_utils.dart';
 export 'validator_utils.dart';

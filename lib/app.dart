@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         title: 'flutter_temp',
         initialRoute: Routes.home,
         theme: ThemeData(
+          fontFamily: 'CustomFonts',
           primarySwatch: const MaterialColor(
             0xdd006fff,
             <int, Color>{

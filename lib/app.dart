@@ -48,7 +48,10 @@ class MyApp extends StatelessWidget {
             },
           ),
         ),
-        builder: FlutterSmartDialog.init(),
+        builder: NavigatorUtils.init(
+          Routes.getRoutes(),
+          builder: FlutterSmartDialog.init(),
+        ),
         routes: Routes.getRoutes(),
         // navigatorObservers: [authMiddleware],
       ),

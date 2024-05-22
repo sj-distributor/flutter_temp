@@ -29,7 +29,23 @@ class NavigatorUtils {
   static BuildContext? get navigatorContext =>
       navigatorKey.currentState?.context;
 
-  final Map<String, WidgetBuilder> _routes = Routes.getRoutes();
+  late Map<String, WidgetBuilder> _routes;
+
+  /// 初始化方法，传递路由映射
+  static Widget Function(BuildContext, Widget?) init(
+    Map<String, WidgetBuilder> routes, {
+    Widget Function(BuildContext, Widget?)? builder,
+  }) {
+    _instance._routes = routes;
+
+    return (BuildContext context, Widget? child) {
+      if (builder == null) {
+        return child!;
+      }
+
+      return builder(context, child);
+    };
+  }
 
   /// 将新页面添加到导航堆栈顶部
   static void push(String routeName) {

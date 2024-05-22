@@ -14,6 +14,7 @@ export 'views/pages/mobile/routes.dart';
 
 class Routes {
   static String home = '/home';
+  static String test = '/test';
   static String join = '/join';
   static String room = '/room';
   static String setting = '/setting';

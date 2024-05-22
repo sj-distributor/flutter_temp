@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:flutter_temp/utils/index.dart';
 import 'package:provider/provider.dart';
 
 import 'providers_setup.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'flutter_temp',
         initialRoute: Routes.home,
+        navigatorKey: NavigatorUtils.navigatorKey,
         theme: ThemeData(
           fontFamily: 'CustomFonts',
           primarySwatch: const MaterialColor(

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_temp/abstracts/index.dart';
 import 'package:flutter_temp/applications/index.dart';
 import 'package:flutter_temp/domains/index.dart';
+import 'package:flutter_temp/routes.dart';
 import 'package:flutter_temp/services/user/index.dart';
 import 'package:flutter_temp/utils/index.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("title"),
+        title: const Text("Home Page"),
       ),
       body: Center(
         child: Column(
@@ -95,6 +96,13 @@ class HomeScreen extends StatelessWidget {
                 print("当前用户：${userStore.user?.toJson()}");
               },
               child: const Text('删除用户'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                NavigatorUtils.push(Routes.test);
+              },
+              child: const Text('go to test'),
             ),
           ],
         ),

@@ -39,8 +39,8 @@ class NavigatorUtils {
     _instance._routes = routes;
 
     return (BuildContext context, Widget? child) {
-      if (builder == null) {
-        return child!;
+      if (builder == null || child == null) {
+        return const SizedBox.shrink();
       }
 
       return builder(context, child);

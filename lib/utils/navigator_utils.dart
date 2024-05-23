@@ -4,7 +4,6 @@
  * @Date: 2024-05-22 20:24:17
  */
 import 'package:flutter/material.dart';
-import 'package:flutter_temp/routes.dart';
 
 /// 【NavigatorUtils工具类，用于路由跳转】\
 /// push：将新页面添加到导航堆栈顶部\
@@ -35,6 +34,8 @@ class NavigatorUtils {
   static Widget Function(BuildContext, Widget?) init(
     Map<String, WidgetBuilder> routes, {
     Widget Function(BuildContext, Widget?)? builder,
+    String? initialRoute,
+    Widget? notFoundPage,
   }) {
     _instance._routes = routes;
 
@@ -43,7 +44,31 @@ class NavigatorUtils {
         return const SizedBox.shrink();
       }
 
-      return builder(context, child);
+      return builder(
+        context,
+        Navigator(
+          key: navigatorKey,
+          initialRoute: initialRoute,
+          onGenerateRoute: (settings) {
+            final childBuilder = _instance._routes[settings.name];
+            if (childBuilder == null) {
+              return MaterialPageRoute(
+                builder: (context) => notFoundPage ?? const SizedBox.shrink(),
+                settings: settings,
+              );
+            }
+
+            return MaterialPageRoute(
+              builder: (context) => childBuilder(context),
+              settings: settings,
+            );
+          },
+          onUnknownRoute: (settings) => MaterialPageRoute(
+            builder: (context) => notFoundPage ?? const SizedBox.shrink(),
+          ),
+          observers: [HeroController()],
+        ),
+      );
     };
   }
 

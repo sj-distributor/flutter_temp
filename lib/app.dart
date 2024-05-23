@@ -21,8 +21,6 @@ class MyApp extends StatelessWidget {
       providers: providers,
       child: MaterialApp(
         title: 'flutter_temp',
-        initialRoute: Routes.home,
-        navigatorKey: NavigatorUtils.navigatorKey,
         theme: ThemeData(
           fontFamily: 'CustomFonts',
           primarySwatch: const MaterialColor(
@@ -50,6 +48,7 @@ class MyApp extends StatelessWidget {
         ),
         builder: NavigatorUtils.init(
           Routes.getRoutes(),
+          initialRoute: Routes.home,
           builder: FlutterSmartDialog.init(),
         ),
         routes: Routes.getRoutes(),

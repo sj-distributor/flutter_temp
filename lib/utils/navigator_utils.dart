@@ -35,13 +35,13 @@ class NavigatorUtils {
     Map<String, WidgetBuilder> routes, {
     Widget Function(BuildContext, Widget?)? builder,
     String? initialRoute,
-    Widget? notFoundPage,
+    Widget notFoundPage = const SizedBox.shrink(),
   }) {
     _instance._routes = routes;
 
     return (BuildContext context, Widget? child) {
       if (builder == null || child == null) {
-        return const SizedBox.shrink();
+        return notFoundPage;
       }
 
       return builder(
@@ -53,7 +53,7 @@ class NavigatorUtils {
             final childBuilder = _instance._routes[settings.name];
             if (childBuilder == null) {
               return MaterialPageRoute(
-                builder: (context) => notFoundPage ?? const SizedBox.shrink(),
+                builder: (context) => notFoundPage,
                 settings: settings,
               );
             }
@@ -64,7 +64,7 @@ class NavigatorUtils {
             );
           },
           onUnknownRoute: (settings) => MaterialPageRoute(
-            builder: (context) => notFoundPage ?? const SizedBox.shrink(),
+            builder: (context) => notFoundPage,
           ),
           observers: [HeroController()],
         ),

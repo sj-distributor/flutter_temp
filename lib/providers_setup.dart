@@ -20,4 +20,5 @@ List<SingleChildWidget> providers = [
 
   // Store
   ListenableProvider<IUserStore>(create: (context) => UserStore()),
+  ListenableProvider<IAppStore>(create: (context) => AppStore()),
 ];

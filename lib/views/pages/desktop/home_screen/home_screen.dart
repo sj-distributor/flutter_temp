@@ -6,7 +6,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_temp/abstracts/index.dart';
 import 'package:flutter_temp/applications/index.dart';
+import 'package:flutter_temp/common/extensions.dart';
 import 'package:flutter_temp/domains/index.dart';
+import 'package:flutter_temp/providers/index.dart';
 import 'package:flutter_temp/routes.dart';
 import 'package:flutter_temp/services/user/index.dart';
 import 'package:flutter_temp/utils/index.dart';
@@ -22,6 +24,7 @@ class HomeScreen extends StatelessWidget {
 
     // Store
     final userStore = context.watch<IUserStore>();
+    final appStore = context.watch<IAppStore>();
 
     // User用例
     final useUser = UserUseCase(userService: userService, userStore: userStore);
@@ -29,7 +32,18 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Home Page"),
+        title: Text(context.lang.homePage),
+        leading: Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.language),
+              onPressed: () {
+                // 这里只是简单的例子
+                appStore.lang = appStore.lang == "en" ? "zh_TW" : "en";
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: Column(

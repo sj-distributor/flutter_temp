@@ -27,6 +27,22 @@ class TestScreen extends StatelessWidget {
               },
               child: const Text('go to home'),
             ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                ToastUtils.showToast("message");
+              },
+              child: const Text('toast'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                LoadingUtils.loading();
+                await Future.delayed(const Duration(seconds: 2));
+                LoadingUtils.dismiss();
+              },
+              child: const Text('loading'),
+            ),
           ],
         ),
       ),

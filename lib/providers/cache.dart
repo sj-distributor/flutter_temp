@@ -16,59 +16,59 @@ class Cache {
 
   Cache._internal();
 
-  SharedPreferences? _prefs;
+  late SharedPreferences? _prefs;
 
   Future<void> init() async {
-    _prefs = await SharedPreferences.getInstance();
+    _instance._prefs = await SharedPreferences.getInstance();
   }
 
   // 存储一个字符串值
   Future<void> setString(String key, String value) async {
-    assert(_prefs != null, "Cache not initialized");
-    await _prefs!.setString(key, value);
+    assert(_instance._prefs != null, "Cache not initialized");
+    await _instance._prefs!.setString(key, value);
   }
 
   // 获取一个字符串值，如果不存在返回默认值
   String? getString(String key, {String? defaultValue}) {
-    assert(_prefs != null, "Cache not initialized");
-    return _prefs!.getString(key) ?? defaultValue;
+    assert(_instance._prefs != null, "Cache not initialized");
+    return _instance._prefs!.getString(key) ?? defaultValue;
   }
 
   // 存储一个整型值
   Future<void> setInt(String key, int value) async {
-    assert(_prefs != null, "Cache not initialized");
-    await _prefs!.setInt(key, value);
+    assert(_instance._prefs != null, "Cache not initialized");
+    await _instance._prefs!.setInt(key, value);
   }
 
   // 获取一个整型值，如果不存在返回默认值
   int? getInt(String key, {int defaultValue = 0}) {
-    assert(_prefs != null, "Cache not initialized");
-    return _prefs!.getInt(key) ?? defaultValue;
+    assert(_instance._prefs != null, "Cache not initialized");
+    return _instance._prefs!.getInt(key) ?? defaultValue;
   }
 
   // 存储一个布尔值
   Future<void> setBool(String key, bool value) async {
-    assert(_prefs != null, "Cache not initialized");
-    await _prefs!.setBool(key, value);
+    assert(_instance._prefs != null, "Cache not initialized");
+    await _instance._prefs!.setBool(key, value);
   }
 
   // 获取一个布尔值，如果不存在返回默认值
   bool? getBool(String key, {bool defaultValue = false}) {
-    assert(_prefs != null, "Cache not initialized");
-    return _prefs!.getBool(key) ?? defaultValue;
+    assert(_instance._prefs != null, "Cache not initialized");
+    return _instance._prefs!.getBool(key) ?? defaultValue;
   }
 
   // 存储一个Map
   Future<void> setMap(String key, Map<String, dynamic> value) async {
-    assert(_prefs != null, "Cache not initialized");
+    assert(_instance._prefs != null, "Cache not initialized");
     String jsonString = jsonEncode(value);
-    await _prefs!.setString(key, jsonString);
+    await _instance._prefs!.setString(key, jsonString);
   }
 
   // 获取一个Map，如果不存在返回空Map
   Map<String, dynamic>? getMap(String key) {
-    assert(_prefs != null, "Cache not initialized");
-    String? jsonString = _prefs!.getString(key);
+    assert(_instance._prefs != null, "Cache not initialized");
+    String? jsonString = _instance._prefs!.getString(key);
     if (jsonString != null) {
       return jsonDecode(jsonString);
     } else {
@@ -78,13 +78,13 @@ class Cache {
 
   // 删除指定键的值
   Future<void> remove(String key) async {
-    assert(_prefs != null, "Cache not initialized");
-    await _prefs!.remove(key);
+    assert(_instance._prefs != null, "Cache not initialized");
+    await _instance._prefs!.remove(key);
   }
 
   // 清空所有存储的值
   Future<void> clear() async {
-    assert(_prefs != null, "Cache not initialized");
-    await _prefs!.clear();
+    assert(_instance._prefs != null, "Cache not initialized");
+    await _instance._prefs!.clear();
   }
 }

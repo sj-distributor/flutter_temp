@@ -1,7 +1,22 @@
+/*
+ * @Author: Marlon.M
+ * @Email: maiguangyang@163.com
+ * @Date: 2024-04-29 09:44:05
+ */
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 class ToastUtils {
+  /// 关闭当前toast
+  static void dismiss() {
+    SmartDialog.dismiss(status: SmartStatus.toast);
+  }
+
+  /// 关闭全部toast
+  static void dismissAll() {
+    SmartDialog.dismiss(status: SmartStatus.allToast);
+  }
+
   /// showToast
   static void showToast(
     // 显示内容

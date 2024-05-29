@@ -8,11 +8,9 @@ import 'base_abstract.dart';
 
 // Entity
 abstract class IUser extends IBaseEntity {
-  String get name;
-  set name(String value);
+  late String name;
 
-  String get email;
-  set email(String value);
+  late String email;
 
   IUser.fromJson(Map<String, dynamic> json);
   Map<String, dynamic> toJson();

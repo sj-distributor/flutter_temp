@@ -8,7 +8,6 @@ import 'package:flutter_temp/abstracts/index.dart';
 import 'package:flutter_temp/applications/index.dart';
 import 'package:flutter_temp/common/extensions.dart';
 import 'package:flutter_temp/domains/index.dart';
-import 'package:flutter_temp/providers/index.dart';
 import 'package:flutter_temp/routes.dart';
 import 'package:flutter_temp/services/user/index.dart';
 import 'package:flutter_temp/utils/index.dart';
@@ -85,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                   return;
                 }
                 final user = UpdateUserRequest(
-                  id: currentUser!.id,
+                  id: currentUser!.id!,
                   name: "marlon-2",
                   email: "marlon@163.com",
                 );

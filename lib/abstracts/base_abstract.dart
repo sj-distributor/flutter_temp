@@ -8,8 +8,7 @@
 import 'package:flutter/material.dart';
 
 abstract class IBaseEntity {
-  int get id;
-  set id(int value);
+  int? id;
 }
 
 // Api接口

@@ -18,7 +18,7 @@ class CreateUserRequest implements ICreateUserRequest {
   });
 
   @override
-  int id;
+  int? id;
 
   @override
   String name;

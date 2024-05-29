@@ -8,13 +8,12 @@ import 'package:json_annotation/json_annotation.dart';
 part 'base_domain.g.dart';
 
 // Entity
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class BaseDomain implements IBaseEntity {
   BaseDomain();
 
   @override
-  @JsonKey(defaultValue: 0)
-  int id = 0;
+  int? id;
 
   factory BaseDomain.fromJson(Map<String, dynamic> json) =>
       _$BaseDomainFromJson(json);

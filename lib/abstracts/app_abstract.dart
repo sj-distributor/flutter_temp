@@ -8,8 +8,7 @@ import 'base_abstract.dart';
 
 // Store
 abstract class IAppStore<Locale> implements IBaseStore {
-  String get lang;
-  set lang(String value);
+  late String lang;
 
   Locale get currentLocale;
 }

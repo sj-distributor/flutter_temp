@@ -17,7 +17,7 @@ class UpdateUserRequest implements IUpdateUserRequest {
   });
 
   @override
-  int id;
+  int? id;
 
   @override
   String name;

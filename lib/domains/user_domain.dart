@@ -27,8 +27,3 @@ class User extends BaseDomain implements IUser {
   @override
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }
-
-// Entity扩展
-extension UserExtension on IUser? {
-  bool get isEmpty => this == null;
-}

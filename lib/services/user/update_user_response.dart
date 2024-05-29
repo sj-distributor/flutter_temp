@@ -14,7 +14,7 @@ class UpdateUserResponse implements IUpdateUserResponse {
 
   @override
   @JsonKey(defaultValue: 0)
-  int id = 0;
+  int? id = 0;
 
   @override
   @JsonKey(defaultValue: "")

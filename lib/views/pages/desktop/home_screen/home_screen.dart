@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_temp/abstracts/index.dart';
 import 'package:flutter_temp/applications/index.dart';
-import 'package:flutter_temp/common/extensions.dart';
+import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/domains/index.dart';
 import 'package:flutter_temp/routes.dart';
 import 'package:flutter_temp/services/user/index.dart';

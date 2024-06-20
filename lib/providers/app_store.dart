@@ -36,5 +36,8 @@ class AppStore extends ChangeNotifier implements IAppStore<Locale> {
   }
 
   @override
+  int? themeMode;
+
+  @override
   void clear() {}
 }

@@ -11,4 +11,6 @@ abstract class IAppStore<Locale> implements IBaseStore {
   late String lang;
 
   Locale get currentLocale;
+
+  int? themeMode;
 }

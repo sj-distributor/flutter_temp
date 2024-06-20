@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'l10n/gen/app_localizations.dart';
 import 'providers_setup.dart';
 import 'routes.dart';
+import 'theme/custom_theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           locale: appStore.currentLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
+          themeMode: CustomTheme(appStore: appStore).themeMode,
           theme: ThemeData(
             fontFamily: 'CustomFonts',
             primarySwatch: const MaterialColor(

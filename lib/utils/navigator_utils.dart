@@ -3,7 +3,10 @@
  * @Email: maiguangyang@163.com
  * @Date: 2024-05-22 20:24:17
  */
+
 import 'package:flutter/material.dart';
+import 'package:flutter_temp/routes.dart';
+import 'package:window_manager/window_manager.dart';
 
 /// 【NavigatorUtils工具类，用于路由跳转】\
 /// push：将新页面添加到导航堆栈顶部\
@@ -28,16 +31,20 @@ class NavigatorUtils {
   static BuildContext? get navigatorContext =>
       navigatorKey.currentState?.context;
 
-  late Map<String, WidgetBuilder> _routes;
+  late List<FlutterRoute> _routes;
+
+  late bool isWeb;
 
   /// 初始化方法，传递路由映射
   static Widget Function(BuildContext, Widget?) init(
-    Map<String, WidgetBuilder> routes, {
+    List<FlutterRoute> routes, {
+    required bool isWeb,
     Widget Function(BuildContext, Widget?)? builder,
     String? initialRoute,
     Widget notFoundPage = const SizedBox.shrink(),
   }) {
     _instance._routes = routes;
+    _instance.isWeb = isWeb;
 
     return (BuildContext context, Widget? child) {
       if (builder == null || child == null) {
@@ -50,13 +57,18 @@ class NavigatorUtils {
           key: navigatorKey,
           initialRoute: initialRoute,
           onGenerateRoute: (settings) {
-            final childBuilder = _instance._routes[settings.name];
-            if (childBuilder == null) {
+            final index = _instance._routes
+                .indexWhere((routr) => routr.path == settings.name);
+
+            if (index == -1) {
               return MaterialPageRoute(
                 builder: (context) => notFoundPage,
                 settings: settings,
               );
             }
+            final childBuilder = _instance._routes[index].page;
+
+            _instance._after(settings.name!);
 
             return MaterialPageRoute(
               builder: (context) => childBuilder(context),
@@ -74,33 +86,45 @@ class NavigatorUtils {
 
   /// 将新页面添加到导航堆栈顶部
   static void push(String routeName) {
-    _instance._push(routeName);
+    _instance
+      .._push(routeName)
+      .._after(routeName);
   }
 
   /// 使用命名路由将新页面添加到导航堆栈顶部，适用于预定义的路由
   static void pushNamed(String routeName) {
-    _instance._pushNamed(routeName);
+    _instance
+      .._pushNamed(routeName)
+      .._after(routeName);
   }
 
   /// 替换当前页面，将新页面添加到导航堆栈顶部，并移除当前页面
   static void pushReplacement(String routeName) {
-    _instance._pushReplacement(routeName);
+    _instance
+      .._pushReplacement(routeName)
+      .._after(routeName);
   }
 
   /// 使用命名路由替换当前页面
   static void pushReplacementNamed(String routeName) {
-    _instance._pushReplacementNamed(routeName);
+    _instance
+      .._pushReplacementNamed(routeName)
+      .._after(routeName);
   }
 
   /// 将新页面添加到导航堆栈顶部，并移除堆栈中的所有其他页面，直到满足指定条件为止
   static void pushAndRemoveUntil(String routeName, RoutePredicate predicate) {
-    _instance._pushAndRemoveUntil(routeName, predicate);
+    _instance
+      .._pushAndRemoveUntil(routeName, predicate)
+      .._after(routeName);
   }
 
   /// 使用命名路由将新页面添加到导航堆栈顶部，并移除堆栈中的所有其他页面，直到满足指定条件为止
   static void pushNamedAndRemoveUntil(
       String routeName, RoutePredicate predicate) {
-    _instance._pushNamedAndRemoveUntil(routeName, predicate);
+    _instance
+      .._pushNamedAndRemoveUntil(routeName, predicate)
+      .._after(routeName);
   }
 
   /// 从导航堆栈中移除当前页面
@@ -121,6 +145,35 @@ class NavigatorUtils {
   /// 尝试从导航堆栈中移除页面
   static Future<bool> maybePop() async {
     return _instance._maybePop();
+  }
+
+  /// _after
+  void _after(String routeName) async {
+    final index =
+        _instance._routes.indexWhere((routr) => routr.path == routeName);
+
+    if (index == -1 || _instance.isWeb) {
+      return;
+    }
+
+    final route = _instance._routes[index];
+
+    WindowOptions windowOptions = WindowOptions(
+      size: Size(route.width, route.height),
+      center: route.center,
+      backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      titleBarStyle:
+          route.hideTitleBar ? TitleBarStyle.hidden : TitleBarStyle.normal,
+    );
+
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.setResizable(route.resizable);
+      await windowManager.setMinimizable(route.minimize);
+      await windowManager.setMaximizable(route.maximize);
+      await windowManager.show();
+      await windowManager.focus();
+    });
   }
 
   /// 实例方法用于实际的逻辑处理
@@ -178,11 +231,14 @@ class NavigatorUtils {
   }
 
   Widget _widgetFromRoute(String routeName) {
-    final builder = _routes[routeName];
-    if (builder != null) {
-      return builder(navigatorContext!);
-    } else {
+    final index =
+        _instance._routes.indexWhere((routr) => routr.path == routeName);
+
+    if (index == -1) {
       return const SizedBox.shrink(); // 如果找不到路由，返回一个默认的 404 页面
     }
+
+    final builder = _routes[index].page;
+    return builder(navigatorContext!);
   }
 }

@@ -22,7 +22,7 @@ class TestAppWidget extends StatelessWidget {
         initialRoute: Routes.home,
         home: child,
         builder: FlutterSmartDialog.init(),
-        routes: Routes.getRoutes(),
+        routes: Routes.generateRoutes(),
       ),
     );
   }

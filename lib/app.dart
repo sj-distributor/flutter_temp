@@ -25,44 +25,45 @@ class MyApp extends StatelessWidget {
         final appStore = context.watch<IAppStore>();
 
         return MaterialApp(
-          title: 'flutter_temp',
-          locale: appStore.currentLocale,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          themeMode: CustomTheme(appStore: appStore).themeMode,
-          theme: ThemeData(
-            fontFamily: 'CustomFonts',
-            primarySwatch: const MaterialColor(
-              0xdd006fff,
-              <int, Color>{
-                50: Color(0xdd006fff),
-                100: Color(0xdd006fff),
-                200: Color(0xdd006fff),
-                300: Color(0xdd006fff),
-                400: Color(0xdd006fff),
-                500: Color(0xdd006fff),
-                600: Color(0xdd006fff),
-                700: Color(0xdd006fff),
-                800: Color(0xdd006fff),
-                900: Color(0xdd006fff),
-              },
+            title: 'flutter_temp',
+            locale: appStore.currentLocale,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            themeMode: CustomTheme(appStore: appStore).themeMode,
+            theme: ThemeData(
+              fontFamily: 'CustomFonts',
+              primarySwatch: const MaterialColor(
+                0xdd006fff,
+                <int, Color>{
+                  50: Color(0xdd006fff),
+                  100: Color(0xdd006fff),
+                  200: Color(0xdd006fff),
+                  300: Color(0xdd006fff),
+                  400: Color(0xdd006fff),
+                  500: Color(0xdd006fff),
+                  600: Color(0xdd006fff),
+                  700: Color(0xdd006fff),
+                  800: Color(0xdd006fff),
+                  900: Color(0xdd006fff),
+                },
+              ),
+              pageTransitionsTheme: const PageTransitionsTheme(
+                builders: {
+                  TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+                  TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+                  TargetPlatform.macOS: NoTransitionPageTransitionsBuilder(),
+                },
+              ),
             ),
-            pageTransitionsTheme: const PageTransitionsTheme(
-              builders: {
-                TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-                TargetPlatform.macOS: NoTransitionPageTransitionsBuilder(),
-              },
+            builder: NavigatorUtils.init(
+              Routes.getRoutes(),
+              isWeb: DeviceUtils.isWeb,
+              initialRoute: Routes.home,
+              builder: FlutterSmartDialog.init(),
             ),
-          ),
-          builder: NavigatorUtils.init(
-            Routes.getRoutes(),
-            initialRoute: Routes.home,
-            builder: FlutterSmartDialog.init(),
-          ),
-          routes: Routes.getRoutes(),
-          // navigatorObservers: [authMiddleware],
-        );
+            routes: Routes.generateRoutes()
+            // navigatorObservers: [authMiddleware],
+            );
       },
     );
   }

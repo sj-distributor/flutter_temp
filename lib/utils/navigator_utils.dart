@@ -33,18 +33,18 @@ class NavigatorUtils {
 
   late List<FlutterRoute> _routes;
 
-  late bool isWeb;
+  late bool isDesktop;
 
   /// 初始化方法，传递路由映射
   static Widget Function(BuildContext, Widget?) init(
     List<FlutterRoute> routes, {
-    required bool isWeb,
+    required bool isDesktop,
     Widget Function(BuildContext, Widget?)? builder,
     String? initialRoute,
     Widget notFoundPage = const SizedBox.shrink(),
   }) {
     _instance._routes = routes;
-    _instance.isWeb = isWeb;
+    _instance.isDesktop = isDesktop;
 
     return (BuildContext context, Widget? child) {
       if (builder == null || child == null) {
@@ -152,7 +152,7 @@ class NavigatorUtils {
     final index =
         _instance._routes.indexWhere((routr) => routr.path == routeName);
 
-    if (index == -1 || _instance.isWeb) {
+    if (index == -1 || !_instance.isDesktop) {
       return;
     }
 

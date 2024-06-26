@@ -9,6 +9,8 @@ import 'package:flutter_temp/abstracts/index.dart';
 import 'package:flutter_temp/utils/index.dart';
 import 'package:provider/provider.dart';
 
+import 'common/config.dart';
+import 'enums/index.dart';
 import 'l10n/gen/app_localizations.dart';
 import 'providers_setup.dart';
 import 'routes.dart';
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
             locale: appStore.currentLocale,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
+            debugShowCheckedModeBanner: false,
             themeMode: CustomTheme(appStore: appStore).themeMode,
             theme: ThemeData(
               fontFamily: 'CustomFonts',
@@ -57,9 +60,18 @@ class MyApp extends StatelessWidget {
             ),
             builder: NavigatorUtils.init(
               Routes.getRoutes(),
-              isWeb: DeviceUtils.isWeb,
+              isDesktop: DeviceUtils.isDesktop,
               initialRoute: Routes.home,
-              builder: FlutterSmartDialog.init(),
+              builder: FlutterSmartDialog.init(builder: (context, child) {
+                if (Config.env != EnvEnum.master.name) {
+                  return Banner(
+                    message: Config.env.toUpperCase(),
+                    location: BannerLocation.bottomEnd,
+                    child: child,
+                  );
+                }
+                return child!;
+              }),
             ),
             routes: Routes.generateRoutes()
             // navigatorObservers: [authMiddleware],

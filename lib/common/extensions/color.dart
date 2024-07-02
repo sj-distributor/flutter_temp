@@ -31,7 +31,7 @@ extension ColorBuildContextExtension on BuildContext {
   /// 控制毛玻璃容器的背景色，通常为透明色
   Color get colorBgBlur => Colors.transparent;
 
-  /// 组件的容器背景色，例如：默认按钮、输入框等。务必不要将其与 `colorBgElevated` 混淆
+  /// 组件的容器背景色，#ffffff，例如：默认按钮、输入框等。务必不要将其与 `colorBgElevated` 混淆
   Color get colorBgContainer => const Color(0xFFffffff);
 
   /// 该色用于页面整体布局的背景色

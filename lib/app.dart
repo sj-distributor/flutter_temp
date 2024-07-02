@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_temp/abstracts/index.dart';
+import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/utils/index.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +36,8 @@ class MyApp extends StatelessWidget {
           themeMode: CustomTheme(appStore: appStore).themeMode,
           theme: ThemeData(
             fontFamily: 'CustomFonts',
+            scaffoldBackgroundColor: context.colorBgContainer,
+            appBarTheme: AppBarTheme(color: context.colorBgContainer),
             primarySwatch: const MaterialColor(
               0xdd006fff,
               <int, Color>{

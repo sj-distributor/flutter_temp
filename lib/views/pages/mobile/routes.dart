@@ -7,7 +7,7 @@ import 'package:flutter_temp/abstracts/routes_abstracts.dart';
 import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/routes.dart';
 
-import 'home_screen/home_screen.dart';
+import 'screens/home_screen/home_screen.dart';
 
 class MobileRoutes extends BaseRoutes<FlutterRoute> {
   // 私有构造函数

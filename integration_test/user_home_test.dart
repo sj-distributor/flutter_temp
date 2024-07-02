@@ -3,7 +3,7 @@
  * @Email: maiguangyang@163.com
  * @Date: 2024-05-07 21:22:18
  */
-import 'package:flutter_temp/views/pages/desktop/home_screen/home_screen.dart';
+import 'package:flutter_temp/views/pages/desktop/screens/home_screen/home_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../test/widgets/app_widget.dart';

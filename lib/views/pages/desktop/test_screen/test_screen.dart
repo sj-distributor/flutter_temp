@@ -12,10 +12,12 @@ class TestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("currentRoute ${Routes.instance.currentRoute?.title}");
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Test Page"),
+        leading: const SizedBox.shrink(),
       ),
       body: Center(
         child: Column(

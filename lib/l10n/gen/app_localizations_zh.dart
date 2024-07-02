@@ -6,6 +6,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get homePage => '首页';
+
+  @override
+  String get testPage => '测试页';
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
@@ -14,4 +17,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get homePage => '首頁';
+
+  @override
+  String get testPage => '測試頁';
 }

@@ -4,5 +4,11 @@
     "en": "Home Page",
     "es": "Home Page",
     "zh_TW": "首頁"
+  },
+  "testPage": {
+    "zh": "测试页",
+    "en": "Test Page",
+    "es": "Test Page",
+    "zh_TW": "測試頁"
   }
 }

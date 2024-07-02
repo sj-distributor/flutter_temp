@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("currentRoute ${Routes.instance.currentRoute?.title}");
     // Service
     final userService = context.read<IUserService>();
 
@@ -26,11 +27,13 @@ class HomeScreen extends StatelessWidget {
     final appStore = context.watch<IAppStore>();
 
     // User用例
-    final useUser = UserUseCase(userService: userService, userStore: userStore);
+    final useUser = UserUseCase(
+      userService: userService,
+      userStore: userStore,
+    );
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(context.lang.homePage),
         leading: Row(
           children: [

@@ -13,6 +13,19 @@ export 'views/pages/desktop/routes.dart';
 export 'views/pages/mobile/routes.dart';
 
 class Routes {
+  /// 私有构造函数
+  Routes._internal();
+
+  static final Routes _instance = Routes._internal();
+  static Routes get instance => _instance;
+
+  /// 工厂构造函数，防止误调用
+  factory Routes() => _instance;
+
+  /// 当前路由
+  FlutterRoute? currentRoute;
+
+  // 路由path
   static String home = '/home';
   static String test = '/test';
   static String join = '/join';
@@ -20,26 +33,26 @@ class Routes {
   static String setting = '/setting';
   static String welcomeLogin = '/welcome/login';
 
-  // 开放路由，无需校验权限
+  /// 开放路由，无需校验权限
   static final List<String> openRoutes = [
     welcomeLogin,
   ];
 
-  // 根据不同环境，获取路由
+  /// 根据不同环境，获取路由
   static List<FlutterRoute> getRoutes() {
     if (DeviceUtils.isWebPc) {
-      return DesktopRoutes.routes;
+      return DesktopRoutes.instance.getRoutes();
     }
 
     if (DeviceUtils.isWebMobile) {
-      return MobileRoutes.routes;
+      return MobileRoutes.instance.getRoutes();
     }
 
     if (DeviceUtils.isMobile) {
-      return MobileRoutes.routes;
+      return MobileRoutes.instance.getRoutes();
     }
 
-    return DesktopRoutes.routes;
+    return DesktopRoutes.instance.getRoutes();
   }
 
   /// 生成路由

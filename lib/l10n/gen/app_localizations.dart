@@ -104,6 +104,12 @@ abstract class AppLocalizations {
   /// In zh, this message translates to:
   /// **'首页'**
   String get homePage;
+
+  /// No description provided for @testPage.
+  ///
+  /// In zh, this message translates to:
+  /// **'测试页'**
+  String get testPage;
 }
 
 class _AppLocalizationsDelegate

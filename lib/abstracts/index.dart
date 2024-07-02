@@ -11,3 +11,4 @@ export 'user_abstract.dart';
 export 'payment_abstract.dart';
 export 'product_abstract.dart';
 export 'app_abstract.dart';
+export 'routes_abstracts.dart';

@@ -6,4 +6,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homePage => 'Home Page';
+
+  @override
+  String get testPage => 'Test Page';
 }

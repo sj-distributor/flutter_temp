@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_temp/routes.dart';
 import 'package:window_manager/window_manager.dart';
 
+import '../abstracts/routes_abstracts.dart';
+
 /// 【NavigatorUtils工具类，用于路由跳转】\
 /// push：将新页面添加到导航堆栈顶部\
 /// pushNamed：使用命名路由将新页面添加到导航堆栈顶部，适用于预定义的路由\
@@ -21,10 +23,14 @@ import 'package:window_manager/window_manager.dart';
 /// maybePop：尝试从导航堆栈中移除页面，如果可以的话
 
 class NavigatorUtils {
-  // 防止外部直接初始化
-  NavigatorUtils._();
+  // 私有构造函数
+  NavigatorUtils._internal();
 
-  static final NavigatorUtils _instance = NavigatorUtils._();
+  static final NavigatorUtils _instance = NavigatorUtils._internal();
+  static NavigatorUtils get instance => _instance;
+
+  // 工厂构造函数，防止误调用
+  factory NavigatorUtils() => _instance;
 
   static final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -36,20 +42,24 @@ class NavigatorUtils {
   late bool isDesktop;
 
   /// 初始化方法，传递路由映射
-  static Widget Function(BuildContext, Widget?) init(
-    List<FlutterRoute> routes, {
+  static Widget Function(BuildContext, Widget?) init({
+    required List<BaseRoutes<FlutterRoute>> routers,
     required bool isDesktop,
     Widget Function(BuildContext, Widget?)? builder,
     String? initialRoute,
     Widget notFoundPage = const SizedBox.shrink(),
   }) {
-    _instance._routes = routes;
-    _instance.isDesktop = isDesktop;
-
     return (BuildContext context, Widget? child) {
       if (builder == null || child == null) {
         return notFoundPage;
       }
+
+      for (var router in routers) {
+        router.init(childContext: context);
+      }
+
+      _instance._routes = Routes.getRoutes();
+      _instance.isDesktop = isDesktop;
 
       return builder(
         context,
@@ -152,11 +162,17 @@ class NavigatorUtils {
     final index =
         _instance._routes.indexWhere((routr) => routr.path == routeName);
 
-    if (index == -1 || !_instance.isDesktop) {
+    if (index == -1) {
       return;
     }
 
     final route = _instance._routes[index];
+    Routes.instance.currentRoute = route;
+
+    // 如果不是桌面端，直接return
+    if (!_instance.isDesktop) {
+      return;
+    }
 
     WindowOptions windowOptions = WindowOptions(
       size: Size(route.width, route.height),

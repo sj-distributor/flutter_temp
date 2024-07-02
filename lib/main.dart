@@ -17,12 +17,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // 桌面端
-  if (DeviceUtils.isDesktop) {
+  if (!DeviceUtils.isWeb && DeviceUtils.isDesktop) {
     await windowManager.ensureInitialized();
   }
 
   // App开启霸屏模式
-  if (DeviceUtils.isMobile) {
+  if (!DeviceUtils.isWeb && DeviceUtils.isMobile) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   }
 

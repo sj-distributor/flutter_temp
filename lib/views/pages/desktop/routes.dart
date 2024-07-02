@@ -3,7 +3,6 @@
  * @Email: maiguangyang@163.com
  * @Date: 2024-04-24 20:01:06
  */
-import 'package:flutter/material.dart';
 import 'package:flutter_temp/abstracts/routes_abstracts.dart';
 import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/routes.dart';

@@ -1,0 +1,30 @@
+{
+  "Controlled Widget": {
+    "prefix": "cw",
+    "body": [
+      "import 'package:flutter/material.dart';",
+      "",
+      "class ${1:name} extends StatefulWidget {",
+      "  const ${1:name}({super.key});",
+      "",
+      "  @override",
+      "  State<${1:name}> createState() => _${1:name}Controller();",
+      "}",
+      "",
+      "class _${1:name}Controller extends State<${1:name}> {",
+      "  @override",
+      "  Widget build(BuildContext context) => _${1:name}View(this);",
+      "}",
+      "",
+      "class _${1:name}View extends WidgetView<${1:name}, _${1:name}Controller> {",
+      "  const _${1:name}View(super.state);",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return Container($0);",
+      "  }",
+      "}"
+    ],
+    "description": ""
+  }
+}

@@ -6,10 +6,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-/// 根据lib/l10n/language.json生成国际化配置文件
+/// 根据lib/common/l10n/language.json生成国际化配置文件
 void generatel10n() {
   // 读取JSON文件
-  String path = "lib/l10n";
+  String path = "lib/common/l10n";
   String inputPath = "$path/language.json";
 
   File jsonFile = File(inputPath);

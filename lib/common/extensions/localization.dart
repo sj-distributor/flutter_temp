@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 14:06:48
  */
 import 'package:flutter/material.dart';
-import 'package:flutter_temp/l10n/gen/app_localizations.dart';
+import 'package:flutter_temp/common/l10n/gen/app_localizations.dart';
 
 import '../constant.dart';
 

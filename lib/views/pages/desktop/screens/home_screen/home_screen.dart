@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("currentRoute ${Routes.instance.currentRoute?.title}");
+    print("currentRoute ${NavigatorUtils.instance.currentRoute?.toJson()}");
     // Service
     final userService = context.read<IUserService>();
 
@@ -41,6 +41,7 @@ class HomeScreen extends StatelessWidget {
               icon: const Icon(Icons.language),
               onPressed: () {
                 // 这里只是简单的例子
+                NavigatorUtils.instance.refreshCurrentRoute();
                 appStore.lang = appStore.lang == "en" ? "zh_TW" : "en";
               },
             ),
@@ -116,7 +117,9 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                NavigatorUtils.push(Routes.test);
+                NavigatorUtils.push(Routes.test, pathParameters: {
+                  "id": 14234,
+                });
               },
               child: const Text('go to test'),
             ),

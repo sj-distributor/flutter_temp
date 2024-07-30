@@ -9,7 +9,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'app.dart';
-import 'common/config.dart';
+import '../config/config.dart';
 import 'providers/cache.dart';
 import 'utils/device_utils.dart';
 

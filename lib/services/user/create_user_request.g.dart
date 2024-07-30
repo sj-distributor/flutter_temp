@@ -8,7 +8,7 @@ part of 'create_user_request.dart';
 
 CreateUserRequest _$CreateUserRequestFromJson(Map<String, dynamic> json) =>
     CreateUserRequest(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String,
       email: json['email'] as String,
     )..products = (json['products'] as List<dynamic>?)

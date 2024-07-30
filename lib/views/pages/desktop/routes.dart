@@ -25,20 +25,26 @@ class DesktopRoutes extends BaseRoutes<FlutterRoute> {
   List<FlutterRoute> getRoutes() {
     return [
       FlutterRoute(
-        path: Routes.home,
+        name: Routes.home.name,
+        path: Routes.home.path,
         title: context?.lang.homePage,
         hideTitleBar: true,
-        page: (context) => const HomeScreen(),
+        builder: (context, state) => const HomeScreen(),
       ),
       FlutterRoute(
-        path: Routes.test,
+        name: Routes.test.name,
+        path: Routes.test.path,
         title: context?.lang.testPage,
         subWindow: true,
         hideTitleBar: true,
         minimize: false,
         maximize: false,
         resizable: false,
-        page: (context) => const TestScreen(),
+        builder: (context, state) {
+          // final String id = state.uri.queryParameters['id']!;
+          final String id = state.pathParameters['id']!;
+          return TestScreen(id: id);
+        },
       ),
     ];
   }

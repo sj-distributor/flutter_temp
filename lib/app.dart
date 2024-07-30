@@ -10,9 +10,8 @@ import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/utils/index.dart';
 import 'package:provider/provider.dart';
 
-import 'common/config.dart';
-import 'enums/index.dart';
-import 'l10n/gen/app_localizations.dart';
+import 'common/index.dart';
+import 'config/config.dart';
 import 'providers_setup.dart';
 import 'routes.dart';
 import 'theme/custom_theme.dart';
@@ -27,8 +26,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         final appStore = context.watch<IAppStore>();
 
-        return MaterialApp(
+        return MaterialApp.router(
           title: 'flutter_temp',
+          routerConfig: CustomRoute.generateRoutes(),
           locale: appStore.currentLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
@@ -68,7 +68,6 @@ class MyApp extends StatelessWidget {
               MobileRoutes(),
             ],
             isDesktop: !DeviceUtils.isWeb && DeviceUtils.isDesktop,
-            initialRoute: Routes.home,
             builder: FlutterSmartDialog.init(builder: (context, child) {
               if (Config.env != EnvEnum.master.name) {
                 return Banner(
@@ -80,8 +79,6 @@ class MyApp extends StatelessWidget {
               return child!;
             }),
           ),
-          routes: Routes.generateRoutes(),
-          // navigatorObservers: [authMiddleware],
         );
       },
     );

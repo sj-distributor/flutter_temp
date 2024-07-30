@@ -8,7 +8,7 @@ part of 'update_user_request.dart';
 
 UpdateUserRequest _$UpdateUserRequestFromJson(Map<String, dynamic> json) =>
     UpdateUserRequest(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String,
       email: json['email'] as String,
     );

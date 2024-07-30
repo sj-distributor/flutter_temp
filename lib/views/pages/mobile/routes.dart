@@ -24,9 +24,10 @@ class MobileRoutes extends BaseRoutes<FlutterRoute> {
   List<FlutterRoute> getRoutes() {
     return [
       FlutterRoute(
-        path: Routes.home,
+        name: Routes.home.name,
+        path: Routes.home.path,
         title: context?.lang.homePage,
-        page: (context) => const HomeScreen(),
+        builder: (context, state) => const HomeScreen(),
       ),
     ];
   }

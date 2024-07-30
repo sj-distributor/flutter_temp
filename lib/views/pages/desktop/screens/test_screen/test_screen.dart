@@ -4,25 +4,28 @@
  * @Date: 2024-04-24 20:01:23
  */
 import 'package:flutter/material.dart';
+import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/routes.dart';
 import 'package:flutter_temp/utils/index.dart';
 
 class TestScreen extends StatelessWidget {
-  const TestScreen({super.key});
+  const TestScreen({super.key, required this.id});
+  final String id;
 
   @override
   Widget build(BuildContext context) {
-    print("currentRoute ${Routes.instance.currentRoute?.title}");
+    print("currentRoute ${NavigatorUtils.instance.currentRoute?.toJson()}");
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Test Page"),
+        title: Text(context.lang.testPage),
         leading: const SizedBox.shrink(),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text("id $id"),
             ElevatedButton(
               onPressed: () {
                 NavigatorUtils.push(Routes.home);

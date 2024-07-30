@@ -7,7 +7,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../common/config.dart';
+import '../../config/config.dart';
 
 class Cache {
   // 私有构造函数

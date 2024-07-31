@@ -7,11 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../middleware/index.dart';
-import '../routes.dart';
-import '../utils/index.dart';
-
-part 'custom_route.g.dart';
+part 'flutter_route.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class FlutterRoute {
@@ -94,60 +90,4 @@ class FlutterRoute {
       _$FlutterRouteFromJson(json);
 
   Map<String, dynamic> toJson() => _$FlutterRouteToJson(this);
-}
-
-/// 自定义路由
-class CustomRoute {
-  /// 私有构造函数
-  CustomRoute._internal();
-
-  static final CustomRoute _instance = CustomRoute._internal();
-  static CustomRoute get instance => _instance;
-
-  /// 工厂构造函数，防止误调用
-  factory CustomRoute() => _instance;
-
-  /// 当前路由
-  // FlutterRoute? currentRoute;
-
-  /// 根据不同环境，获取路由
-  static List<FlutterRoute> getRoutes() {
-    if (DeviceUtils.isWebPc) {
-      return DesktopRoutes.instance.getRoutes();
-    }
-
-    if (DeviceUtils.isWebMobile) {
-      return MobileRoutes.instance.getRoutes();
-    }
-
-    if (DeviceUtils.isMobile) {
-      return MobileRoutes.instance.getRoutes();
-    }
-
-    return DesktopRoutes.instance.getRoutes();
-  }
-
-  /// 生成路由
-  static GoRouter generateRoutes() {
-    List<GoRoute> routes = [];
-    getRoutes().forEach((item) {
-      final route = GoRoute(
-        name: item.name,
-        path: item.path,
-        builder: item.builder,
-      );
-
-      routes.add(route);
-    });
-
-    final router = GoRouter(
-      initialLocation: Routes.home.path,
-      routes: routes,
-      navigatorKey: NavigatorUtils.navigatorKey,
-      observers: [
-        RouteMiddleware(),
-      ],
-    );
-    return router;
-  }
 }

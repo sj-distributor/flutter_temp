@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'custom_route.dart';
+part of 'flutter_route.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

@@ -6,6 +6,7 @@
 import 'package:flutter_temp/abstracts/routes_abstracts.dart';
 import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/routes.dart';
+import 'package:flutter_temp/routes/flutter_route.dart';
 
 import 'screens/home_screen/home_screen.dart';
 

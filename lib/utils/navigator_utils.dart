@@ -9,6 +9,8 @@ import 'package:flutter_temp/routes.dart';
 import 'package:go_router/go_router.dart';
 
 import '../abstracts/index.dart';
+import '../routes/flutter_route.dart';
+import '../routes/route_strategy.dart';
 
 /// 【NavigatorUtils1工具类，用于路由跳转】\
 /// init：初始化方法，传递路由映射\
@@ -44,7 +46,7 @@ class NavigatorUtils {
   /// 初始化方法，传递路由映射
   static Widget Function(BuildContext, Widget?) init({
     required List<BaseRoutes<FlutterRoute>> routers,
-    required bool isDesktop,
+    required String deviceType,
     Widget Function(BuildContext, Widget?)? builder,
   }) {
     return (BuildContext context, Widget? child) {
@@ -56,8 +58,10 @@ class NavigatorUtils {
         router.init(childContext: context);
       }
 
-      _instance.isDesktop = isDesktop;
-      _instance.routes = CustomRoute.getRoutes();
+      // _instance.isDesktop = isDesktop;
+
+      final routeStrategy = RouteStrategy.initRoute(deviceType);
+      _instance.routes = routeStrategy.routes;
 
       _instance.refreshCurrentRoute();
 

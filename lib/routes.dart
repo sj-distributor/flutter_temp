@@ -7,8 +7,6 @@
 export 'views/pages/desktop/routes.dart';
 export 'views/pages/mobile/routes.dart';
 
-export 'routes/index.dart';
-
 class Route {
   const Route({
     required this.name,

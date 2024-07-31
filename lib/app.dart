@@ -14,6 +14,7 @@ import 'common/index.dart';
 import 'config/config.dart';
 import 'providers_setup.dart';
 import 'routes.dart';
+import 'routes/route_strategy.dart';
 import 'theme/custom_theme.dart';
 
 class MyApp extends StatelessWidget {
@@ -26,9 +27,12 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         final appStore = context.watch<IAppStore>();
 
+        const deviceType = "desktop";
+        final routeStrategy = RouteStrategy.initRoute(deviceType);
+
         return MaterialApp.router(
           title: 'flutter_temp',
-          routerConfig: CustomRoute.generateRoutes(),
+          routerConfig: routeStrategy.generateRoutes(),
           locale: appStore.currentLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
@@ -67,7 +71,8 @@ class MyApp extends StatelessWidget {
               DesktopRoutes(),
               MobileRoutes(),
             ],
-            isDesktop: !DeviceUtils.isWeb && DeviceUtils.isDesktop,
+            deviceType: deviceType,
+            // isDesktop: !DeviceUtils.isWeb && DeviceUtils.isDesktop,
             builder: FlutterSmartDialog.init(builder: (context, child) {
               if (Config.env != EnvEnum.master.name) {
                 return Banner(

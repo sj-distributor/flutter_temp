@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         final appStore = context.watch<IAppStore>();
 
-        const deviceType = "desktop";
+        // 获取设备类型，然后初始化路由
+        final deviceType = DeviceUtils.getDeviceType(context);
         final routeStrategy = RouteStrategy.initRoute(deviceType);
 
         return MaterialApp.router(

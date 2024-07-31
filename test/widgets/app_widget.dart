@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_temp/providers_setup.dart';
 import 'package:flutter_temp/routes/route_strategy.dart';
+import 'package:flutter_temp/utils/device_utils.dart';
 import 'package:provider/provider.dart';
 
 class TestAppWidget extends StatelessWidget {
@@ -16,7 +17,8 @@ class TestAppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final routeStrategy = RouteStrategy.initRoute("mobile");
+    final deviceType = DeviceUtils.getDeviceType(context);
+    final routeStrategy = RouteStrategy.initRoute(deviceType);
 
     return MultiProvider(
       providers: providers,

@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 
 import '../abstracts/index.dart';
 import '../routes/flutter_route.dart';
+import '../routes/route_enum.dart';
 import '../routes/route_strategy.dart';
 
 /// 【NavigatorUtils1工具类，用于路由跳转】\
@@ -46,7 +47,7 @@ class NavigatorUtils {
   /// 初始化方法，传递路由映射
   static Widget Function(BuildContext, Widget?) init({
     required List<BaseRoutes<FlutterRoute>> routers,
-    required String deviceType,
+    required DeviceTypeEnum deviceType,
     Widget Function(BuildContext, Widget?)? builder,
   }) {
     return (BuildContext context, Widget? child) {

@@ -149,7 +149,10 @@ lib/
 - 修改`lib/common/l10n/language.json`后，执行命令生成多语言：`make l10n`
 - 修改`assets/fonts/*`后，执行命令生成字体文件：`make icon`
 - 测试 [常用断言类型](./docs/test.md)
-  
+
+### 开发
+  - git clone代码后，记得执行一次：`make module`
+
 ### 代理
 ```
 # export http_proxy=http://127.0.0.1:1087

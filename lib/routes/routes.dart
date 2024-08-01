@@ -5,19 +5,19 @@ import '../views/pages/mobile/routes.dart';
 import 'route_abstract.dart';
 
 /// 移动端路由
-class MobileRoute extends RouteAbstract {
+class MobileRoute extends IRouteAbstract {
   @override
   List<FlutterRoute> get routes => MobileRoutes.instance.getRoutes();
 }
 
 /// 平板端路由
-class IPadpRoute extends RouteAbstract {
+class IPadpRoute extends IRouteAbstract {
   @override
   List<FlutterRoute> get routes => MobileRoutes.instance.getRoutes();
 }
 
 /// 桌面端路由
-class DesktopRoute extends RouteAbstract {
+class DesktopRoute extends IRouteAbstract {
   @override
   List<FlutterRoute> get routes => DesktopRoutes.instance.getRoutes();
 }

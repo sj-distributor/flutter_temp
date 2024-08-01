@@ -16,7 +16,7 @@ class RouteStrategy {
   static const DeviceTypeEnum desktop = DeviceTypeEnum.desktop;
 
   /// 装载路由行为策略
-  static Map<DeviceTypeEnum, RouteAbstract> routeMap = {
+  static Map<DeviceTypeEnum, IRouteAbstract> routeMap = {
     /// 移动端
     mobile: MobileRoute(),
 
@@ -28,7 +28,7 @@ class RouteStrategy {
   };
 
   /// 初始化路由
-  static RouteAbstract initRoute(DeviceTypeEnum name) {
+  static IRouteAbstract initRoute(DeviceTypeEnum name) {
     if (!routeMap.containsKey(name)) {
       return routeMap[DeviceTypeEnum.getDefault()]!;
     }

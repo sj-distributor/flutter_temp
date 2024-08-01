@@ -10,7 +10,7 @@ import '../routes.dart';
 import '../utils/index.dart';
 import 'flutter_route.dart';
 
-abstract class RouteAbstract {
+abstract class IRouteAbstract {
   late List<FlutterRoute> routes;
 
   /// 根据自定义路由FlutterRoute

@@ -17,8 +17,10 @@ class Route {
   final String path;
 }
 
+/// 路由集合
+/// name：路由名称，跳转的时候使用
+/// path：路由路径
 class Routes {
-  // 路由path
   static Route home = const Route(name: 'home', path: '/home');
   static Route test = const Route(name: 'test', path: '/test/:id');
   static Route join = const Route(name: 'join', path: '/join');

@@ -16,5 +16,5 @@ nginx:
 start:
 	flutter run -d chrome --web-renderer canvaskit --web-port=1988
 
-git:
-	git submodule update --init --recursive
+module:
+	rm -rf lib/modules && rm -rf .git/modules/lib/modules && git submodule update --init --recursive

@@ -13,8 +13,7 @@ import 'package:provider/provider.dart';
 import 'common/index.dart';
 import 'config/config.dart';
 import 'providers_setup.dart';
-import 'routes.dart';
-import 'routes/route_strategy.dart';
+import 'router.dart';
 import 'theme/custom_theme.dart';
 
 class MyApp extends StatelessWidget {
@@ -27,9 +26,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         final appStore = context.watch<IAppStore>();
 
-        // 获取设备类型，然后初始化路由
+        // 获取设备类型并且初始化路由
         final deviceType = DeviceUtils.getDeviceType(context);
-        final routeStrategy = RouteStrategy.initRoute(deviceType);
+        final routeStrategy = CustomRouter.init(deviceType);
 
         return MaterialApp.router(
           title: 'flutter_temp',

@@ -4,18 +4,7 @@
  * @Date: 2024-07-29 19:16:48
  */
 
-export 'views/pages/desktop/routes.dart';
-export 'views/pages/mobile/routes.dart';
-
-class Route {
-  const Route({
-    required this.name,
-    required this.path,
-  });
-
-  final String name;
-  final String path;
-}
+import 'modules/index.dart';
 
 /// 路由集合
 /// name：路由名称，跳转的时候使用

@@ -1,0 +1,3 @@
+[submodule "lib/modules"]
+	path = lib/modules
+	url = git@github.com:sj-distributor/flutter_modules.git

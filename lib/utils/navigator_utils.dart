@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart' hide Route;
 import 'package:go_router/go_router.dart';
+import 'package:window_manager/window_manager.dart';
 
 import '../abstracts/index.dart';
 import '../modules/index.dart';
@@ -46,6 +47,7 @@ class NavigatorUtils {
   static Widget Function(BuildContext, Widget?) init({
     required List<BaseRoutes<FlutterRoute>> routers,
     required DeviceTypeEnum deviceType,
+    required isDesktop,
     Widget Function(BuildContext, Widget?)? builder,
   }) {
     return (BuildContext context, Widget? child) {
@@ -60,6 +62,7 @@ class NavigatorUtils {
       // 这里记得再初始化一次，否则在项目的路由里，第一次进来拿不到context
       final routeStrategy = CustomRouter.init(deviceType);
       _instance.routes = routeStrategy.routes;
+      _instance.isDesktop = isDesktop;
 
       _instance.refreshCurrentRoute();
 
@@ -89,8 +92,39 @@ class NavigatorUtils {
     );
   }
 
+  /// 切换路由并在桌面端设置窗口的属性和显示状态
+  void navigateAndSetupWindow(String? routeName) async {
+    if (routeName == null || !_instance.isDesktop) return;
+
+    // 根据routeName找出匹配的路由
+    final route =
+        _instance.routes.where((route) => route.name == routeName).firstOrNull;
+
+    if (route == null) {
+      return;
+    }
+
+    WindowOptions windowOptions = WindowOptions(
+      size: Size(route.width, route.height),
+      center: route.center,
+      backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      titleBarStyle:
+          route.hideTitleBar ? TitleBarStyle.hidden : TitleBarStyle.normal,
+    );
+
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.setResizable(route.resizable);
+      await windowManager.setMinimizable(route.minimize);
+      await windowManager.setMaximizable(route.maximize);
+      await windowManager.show();
+      await windowManager.focus();
+    });
+  }
+
   /// 获取当前路由
   FlutterRoute? getCurrentRoute(String? name) {
+    navigateAndSetupWindow(name);
     return _instance.routes.where((item) => item.name == name).firstOrNull;
   }
 

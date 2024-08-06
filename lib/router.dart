@@ -4,6 +4,7 @@
  * @Date: 2024-08-01 09:44:06
  */
 
+import 'routes.dart';
 import 'views/pages/desktop/routes.dart';
 import 'views/pages/mobile/routes.dart';
 
@@ -34,6 +35,9 @@ class CustomRouter {
       routeMap: routeMap,
       deviceType: deviceType,
     );
+
+    // 路由初始页面
+    routeStrategy.initialLocation = Routes.home.path;
 
     // 注入中间件
     routeStrategy.observers = [

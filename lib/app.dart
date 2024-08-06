@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
               MobileRoutes(),
             ],
             deviceType: deviceType,
-            // isDesktop: !DeviceUtils.isWeb && DeviceUtils.isDesktop,
+            isDesktop: !DeviceUtils.isWeb && DeviceUtils.isDesktop,
             builder: FlutterSmartDialog.init(builder: (context, child) {
               if (Config.env != EnvEnum.master.name) {
                 return Banner(

@@ -1,11 +1,6 @@
 /*
  * @Author: Marlon.M
  * @Email: maiguangyang@163.com
- * @Date: 2024-07-31 18:32:04
- */
-/*
- * @Author: Marlon.M
- * @Email: maiguangyang@163.com
  * @Date: 2024-04-24 20:43:11
  */
 import 'dart:io';
@@ -36,7 +31,7 @@ class DeviceUtils {
 
   /// 判断是否iPad
   static bool isIPad(BuildContext context) {
-    if (isDesktop) return false;
+    if (!isWebMobile && isDesktop) return false;
 
     final double shortestSide = MediaQuery.of(context).size.shortestSide;
     return shortestSide >= 600 && shortestSide <= 800;

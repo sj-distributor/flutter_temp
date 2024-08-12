@@ -97,6 +97,9 @@ flutter:
     - family: CustomFonts
       fonts:
         - asset: fonts/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYxNbPzS5HE.ttf
+    - family: Roboto
+      fonts:
+        - asset: fonts/KFOmCnqEu92Fr1Me5WZLCzYlKw.ttf
 
   #   - family: Schyler
   #     fonts:

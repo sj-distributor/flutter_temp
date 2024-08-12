@@ -18,6 +18,9 @@ class RouteMiddleware extends RouteObserver<PageRoute<dynamic>> {
 
   /// 设置当前页路由
   setCurrentRoute(String? name) {
-    NavigatorUtils().currentRoute = NavigatorUtils().getCurrentRoute(name);
+    final route = NavigatorUtils().getCurrentRoute(name);
+    if (route != NavigatorUtils().currentRoute) {
+      NavigatorUtils().currentRoute = NavigatorUtils().getCurrentRoute(name);
+    }
   }
 }

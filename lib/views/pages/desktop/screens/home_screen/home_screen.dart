@@ -4,14 +4,12 @@
  * @Date: 2024-04-24 20:01:23
  */
 import 'package:flutter/material.dart';
-import 'package:flutter_temp/abstracts/index.dart';
-import 'package:flutter_temp/applications/index.dart';
 import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/domains/index.dart';
 import 'package:flutter_temp/routes.dart';
 import 'package:flutter_temp/services/user/index.dart';
 import 'package:flutter_temp/utils/index.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_temp/views/hooks/use_home_hooks.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,18 +17,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("currentRoute ${NavigatorUtils.instance.currentRoute?.toJson()}");
-    // Service
-    final userService = context.read<IUserService>();
 
-    // Store
-    final userStore = context.watch<IUserStore>();
-    final appStore = context.watch<IAppStore>();
+    final useAction = UseHomeHooks(context);
 
-    // User用例
-    final useUser = UserUseCase(
-      userService: userService,
-      userStore: userStore,
-    );
+    // attr
+    final userStore = useAction.userStore;
+    final useUser = useAction.useUser;
+
+    // handle
+    final handleLanguageToggle = useAction.handleLanguageToggle;
 
     return Scaffold(
       appBar: AppBar(
@@ -39,11 +34,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             IconButton(
               icon: const Icon(Icons.language),
-              onPressed: () {
-                // 这里只是简单的例子
-                NavigatorUtils.instance.refreshCurrentRoute();
-                appStore.lang = appStore.lang == "en" ? "zh_TW" : "en";
-              },
+              onPressed: handleLanguageToggle,
             ),
           ],
         ),

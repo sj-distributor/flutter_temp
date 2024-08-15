@@ -4,6 +4,7 @@
  * @Date: 2024-04-24 20:01:23
  */
 import 'package:flutter/material.dart';
+import 'package:flutter_temp/abstracts/widget_view.dart';
 import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/domains/index.dart';
 import 'package:flutter_temp/routes.dart';
@@ -11,8 +12,25 @@ import 'package:flutter_temp/services/user/index.dart';
 import 'package:flutter_temp/utils/index.dart';
 import 'package:flutter_temp/views/hooks/use_home_hooks.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenController();
+}
+
+class _HomeScreenController extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) => _HomeScreenView(this);
+}
+
+class _HomeScreenView extends WidgetView<HomeScreen, _HomeScreenController> {
+  const _HomeScreenView(super.state);
 
   @override
   Widget build(BuildContext context) {

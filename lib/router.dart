@@ -37,7 +37,7 @@ class CustomRouter {
     );
 
     // 路由初始页面
-    routeStrategy.initialLocation = Routes.home.path;
+    routeStrategy.initRoute = Routes.home;
 
     // 注入中间件
     routeStrategy.observers = [

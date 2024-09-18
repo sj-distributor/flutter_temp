@@ -6,7 +6,7 @@
 
 import 'dart:io';
 
-import 'package:flutter_temp/config/nginx_config.dart';
+import '../lib/config/nginx_config.dart';
 
 import '../generator/vhosts.dart';
 import 'utils.dart';

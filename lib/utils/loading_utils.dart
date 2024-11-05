@@ -41,7 +41,7 @@ class LoadingUtils {
     void Function()? onDismiss,
     void Function()? onMask,
     Duration? displayTime,
-    bool? backDismiss,
+    SmartBackType? backType,
     Widget Function(BuildContext)? builder,
   }) {
     if (msg == null) {
@@ -75,7 +75,7 @@ class LoadingUtils {
       onDismiss: onDismiss,
       onMask: onMask,
       displayTime: displayTime,
-      backDismiss: backDismiss,
+      backType: backType,
       builder: builder,
     );
   }

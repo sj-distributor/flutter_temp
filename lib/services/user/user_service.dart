@@ -8,7 +8,7 @@ import 'package:flutter_temp/abstracts/index.dart';
 import 'package:flutter_temp/domains/index.dart';
 import 'package:flutter_temp/services/index.dart';
 
-/// 适配器层
+/// 服务层
 class UserService implements IUserService {
   @override
   Future<CreateUserResponse?> create(ICreateUserRequest request) async {

@@ -7,7 +7,7 @@
 import 'package:flutter_temp/abstracts/index.dart';
 import 'package:flutter_temp/domains/index.dart';
 
-/// 适配器层
+/// 服务层
 class OrderService implements IOrderService {
   @override
   Future<IOrder> createOrder(

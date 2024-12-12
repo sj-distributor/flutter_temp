@@ -16,8 +16,10 @@ class UserStore extends ChangeNotifier implements IUserStore {
 
   @override
   set user(IUser? value) {
-    _user = value;
-    notifyListeners();
+    if (value != _user) {
+      _user = value;
+      notifyListeners();
+    }
   }
 
   @override

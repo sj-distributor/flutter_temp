@@ -20,9 +20,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenController extends State<HomeScreen> {
+  late UseHomeHooks useAction;
+
+  void handleLanguageToggle() {
+    useAction.handleLanguageToggle();
+  }
+
+  /// 初始化Hooks
+  void initHooks() {
+    final context = NavigatorUtils.navigatorContext;
+    useAction = UseHomeHooks(context!);
+  }
+
   @override
   void initState() {
     super.initState();
+
+    initHooks();
   }
 
   @override
@@ -36,14 +50,11 @@ class _HomeScreenView extends WidgetView<HomeScreen, _HomeScreenController> {
   Widget build(BuildContext context) {
     print("currentRoute ${NavigatorUtils.instance.currentRoute?.toJson()}");
 
-    final useAction = UseHomeHooks(context);
+    final useAction = state.useAction;
 
     // attr
     final userStore = useAction.userStore;
     final useUser = useAction.useUser;
-
-    // handle
-    final handleLanguageToggle = useAction.handleLanguageToggle;
 
     return Scaffold(
       appBar: AppBar(
@@ -52,7 +63,7 @@ class _HomeScreenView extends WidgetView<HomeScreen, _HomeScreenController> {
           children: [
             IconButton(
               icon: const Icon(Icons.language),
-              onPressed: handleLanguageToggle,
+              onPressed: state.handleLanguageToggle,
             ),
           ],
         ),

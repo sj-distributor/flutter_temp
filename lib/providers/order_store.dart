@@ -15,8 +15,10 @@ class OrderStorage extends ChangeNotifier implements IOrderStorage {
 
   @override
   set orders(List<IOrder> value) {
-    _orders = value;
-    notifyListeners();
+    if (value != _orders) {
+      _orders = value;
+      notifyListeners();
+    }
   }
 
   @override

@@ -20,16 +20,63 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenController extends State<HomeScreen> {
-  late UseHomeHooks useAction;
+  late UseHomeHooks useHomeHooks;
 
+  /// 切换语言
   void handleLanguageToggle() {
-    useAction.handleLanguageToggle();
+    useHomeHooks.handleLanguageToggle();
   }
 
   /// 初始化Hooks
   void initHooks() {
     final context = NavigatorUtils.navigatorContext;
-    useAction = UseHomeHooks(context!);
+    useHomeHooks = UseHomeHooks(context!);
+  }
+
+  /// 创建用户
+  void createUser() async {
+    final user = CreateUserRequest(
+      id: 111,
+      name: "marlon",
+      email: "marlon@126.com",
+    );
+
+    final (isOk, errorText) = await useHomeHooks.user.create(user);
+    if (!isOk) {
+      ToastUtils.showToast(errorText);
+      return;
+    }
+
+    print("创建用户为：${useHomeHooks.userStore.user?.toJson()}");
+  }
+
+  /// 更新用户
+  void updateUser() async {
+    final currentUser = useHomeHooks.userStore.user;
+    if (currentUser.isEmpty) {
+      ToastUtils.showToast("current user is empty");
+      return;
+    }
+    final user = UpdateUserRequest(
+      id: currentUser!.id!,
+      name: "marlon-2",
+      email: "marlon@163.com",
+    );
+
+    print("更新前用户为：${useHomeHooks.userStore.user?.toJson()}");
+    useHomeHooks.userStore.user = await useHomeHooks.user.update(user);
+    print("更新用户为：${useHomeHooks.userStore.user?.toJson()}");
+  }
+
+  /// 获取用户
+  void getUser() {
+    print("当前用户：${useHomeHooks.userStore.user?.toJson()}");
+  }
+
+  /// 清空用户
+  void clearUser() async {
+    useHomeHooks.userStore.clear();
+    print("当前用户：${useHomeHooks.userStore.user?.toJson()}");
   }
 
   @override
@@ -50,11 +97,10 @@ class _HomeScreenView extends WidgetView<HomeScreen, _HomeScreenController> {
   Widget build(BuildContext context) {
     print("currentRoute ${NavigatorUtils.instance.currentRoute?.toJson()}");
 
-    final useAction = state.useAction;
+    final useHomeHooks = UseHomeHooks(context);
 
     // attr
-    final userStore = useAction.userStore;
-    final useUser = useAction.useUser;
+    final userStore = useHomeHooks.userStore;
 
     return Scaffold(
       appBar: AppBar(
@@ -82,56 +128,22 @@ class _HomeScreenView extends WidgetView<HomeScreen, _HomeScreenController> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () async {
-                final user = CreateUserRequest(
-                  id: 111,
-                  name: "marlon",
-                  email: "marlon@126.com",
-                );
-
-                final (isOk, errorText) = await useUser.create(user);
-                if (!isOk) {
-                  ToastUtils.showToast(errorText);
-                  return;
-                }
-
-                print("创建用户为：${userStore.user?.toJson()}");
-              },
+              onPressed: state.createUser,
               child: const Text('创建用户'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () async {
-                final currentUser = userStore.user;
-                if (currentUser.isEmpty) {
-                  ToastUtils.showToast("current user is empty");
-                  return;
-                }
-                final user = UpdateUserRequest(
-                  id: currentUser!.id!,
-                  name: "marlon-2",
-                  email: "marlon@163.com",
-                );
-
-                print("更新前用户为：${userStore.user?.toJson()}");
-                userStore.user = await useUser.update(user);
-                print("更新用户为：${userStore.user?.toJson()}");
-              },
+              onPressed: state.updateUser,
               child: const Text('更新用户'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                print("当前用户：${userStore.user?.toJson()}");
-              },
+              onPressed: state.getUser,
               child: const Text('获取用户'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                userStore.clear();
-                print("当前用户：${userStore.user?.toJson()}");
-              },
+              onPressed: state.clearUser,
               child: const Text('删除用户'),
             ),
             const SizedBox(height: 20),

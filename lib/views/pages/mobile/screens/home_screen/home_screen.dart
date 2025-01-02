@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
 
     // attr
     final userStore = useAction.userStore;
-    final useUser = useAction.useUser;
+    final useUser = useAction.user;
 
     return Scaffold(
       appBar: AppBar(

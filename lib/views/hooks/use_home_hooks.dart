@@ -17,7 +17,7 @@ class UseHomeHooks {
   late final IUserService userService;
   late final IUserStore userStore;
   late final IAppStore appStore;
-  late final UserUseCase useUser;
+  late final UserUseCase user;
 
   /// Home Hooks
   UseHomeHooks(this.context) {
@@ -29,7 +29,7 @@ class UseHomeHooks {
     appStore = context.watch<IAppStore>();
 
     // User用例
-    useUser = UserUseCase(
+    user = UserUseCase(
       userService: userService,
       userStore: userStore,
     );

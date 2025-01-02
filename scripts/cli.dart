@@ -31,7 +31,8 @@ Future<void> createProject({
 }) async {
   try {
     // 执行 'flutter create .' 命令
-    final result = await Process.run('flutter', ['create', '.']);
+    final result = await Process.run(
+        'flutter', ['create', '.', '--project-name', projectName]);
 
     // 输出命令的执行结果
     if (result.exitCode == 0) {

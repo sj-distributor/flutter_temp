@@ -16,5 +16,11 @@ nginx:
 start:
 	flutter run -d chrome --web-renderer canvaskit --web-port=1988
 
+init:
+	git submodule add https://github.com/sj-distributor/flutter_modules.git lib/modules
+
 module:
 	rm -rf lib/modules && rm -rf .git/modules/lib/modules && git submodule update --init --recursive
+
+remove:
+	rm -rf lib/modules && rm -rf .git/modules/lib/modules && git config --remove-section submodule.lib/modules

@@ -9,7 +9,7 @@
   - `include project/flutter_temp/build/web/vhosts/*`;
   
 ### nginx配置
-  - `lib/config/nginx_config.dart`
+  - `lib/config/nginx_config.json`
  
 ### 其他说明
   - type分为3种类型：cdn、host、proxy

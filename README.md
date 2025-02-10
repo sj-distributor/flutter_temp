@@ -32,7 +32,7 @@ lib/
 ```
 
 ### 开发
-  - git clone代码后，记得执行一次：`make init`
+  - git clone代码后，去`pubspec.yaml`暂时删除`flutter_oxygen`包，然后执行一次：`make init`或者`make module`
   - 安装依赖：`flutter pub get`
   - 修改领域层（domains）里面的Entity后，执行代码生成命令：`make code`
   - 修改`lib/common/l10n/language.json`后，执行命令生成多语言：`make l10n`

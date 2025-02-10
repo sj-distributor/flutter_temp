@@ -256,6 +256,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_oxygen:
+    dependency: "direct main"
+    description:
+      path: "packages/flutter_oxygen"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter_smart_dialog:
     dependency: "direct main"
     description:
@@ -581,7 +588,7 @@ packages:
     source: hosted
     version: "1.3.0"
   recase:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: recase
       sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
@@ -922,7 +929,7 @@ packages:
     source: hosted
     version: "1.1.0"
   xml:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: xml
       sha256: b015a8ad1c488f66851d762d3090a21c600e479dc75e68328c52774040cf9226
@@ -930,7 +937,7 @@ packages:
     source: hosted
     version: "6.5.0"
   yaml:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: yaml
       sha256: "75769501ea3489fca56601ff33454fe45507ea3bfb014161abc3b43ae25989d5"
@@ -938,7 +945,7 @@ packages:
     source: hosted
     version: "3.1.2"
   yaml_edit:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: yaml_edit
       sha256: e9c1a3543d2da0db3e90270dbb1e4eebc985ee5e3ffe468d83224472b2194a5f
@@ -946,5 +953,5 @@ packages:
     source: hosted
     version: "2.2.1"
 sdks:
-  dart: ">=3.4.0 <4.0.0"
+  dart: ">=3.6.0 <4.0.0"
   flutter: ">=3.22.0"

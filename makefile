@@ -11,7 +11,7 @@ icon:
 	dart scripts/generate_icon.dart
 
 nginx:
-	dart ./scripts/generate_vhosts.dart
+	dart ./packages/flutter_oxygen/lib/scripts/generate_vhosts.dart path=lib/config/nginx_config.json
 
 start:
 	flutter run -d chrome --web-renderer canvaskit --web-port=1988

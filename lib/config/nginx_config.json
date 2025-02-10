@@ -1,0 +1,29 @@
+{
+  "servers": [
+    {
+      "type": "cdn",
+      "port": 80,
+      "domain": [
+        "cdn.flutter-temp.com"
+      ]
+    },
+    {
+      "type": "host",
+      "port": 80,
+      "entries": [
+        "index.html"
+      ],
+      "domain": [
+        "test.flutter-temp.com"
+      ]
+    },
+    {
+      "type": "proxy",
+      "port": 80,
+      "proxy_url": "localhost:1988",
+      "domain": [
+        "dev.flutter-temp.com"
+      ]
+    }
+  ]
+}

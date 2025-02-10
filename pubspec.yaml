@@ -35,6 +35,9 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
 
+  flutter_oxygen:
+    path: ./packages/flutter_oxygen
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
@@ -64,10 +67,6 @@ dev_dependencies:
   test: ^1.24.9
   integration_test:
     sdk: flutter
-  recase: ^4.1.0
-  yaml_edit: ^2.2.1
-  yaml: ^3.1.2
-  xml: ^6.5.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

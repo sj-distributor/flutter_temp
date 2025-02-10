@@ -6,9 +6,8 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter_oxygen/flutter_oxygen.dart';
 import 'package:get_user_agent/get_user_agent.dart';
-
-import '../modules/index.dart';
 
 class DeviceUtils {
   static bool get isDesktop =>

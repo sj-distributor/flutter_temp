@@ -17,10 +17,10 @@ start:
 	flutter run -d chrome --web-renderer canvaskit --web-port=1988
 
 init:
-	git submodule add https://github.com/sj-distributor/flutter_modules.git lib/modules
+	git submodule add https://github.com/sj-distributor/flutter_oxygen.git packages/flutter_oxygen
 
 module:
-	rm -rf lib/modules && rm -rf .git/modules/lib/modules && git submodule update --init --recursive
+	rm -rf packages && rm -rf .git/modules/packages/flutter_oxygen && git submodule update --init --recursive
 
 remove:
-	rm -rf lib/modules && rm -rf .git/modules/lib/modules && git config --remove-section submodule.lib/modules
+	rm -rf packages && rm -rf .git/modules/packages/flutter_oxygen && git config --remove-section submodule.packages/flutter_oxygen

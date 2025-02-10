@@ -4,7 +4,7 @@
  * @Date: 2024-07-29 19:16:48
  */
 
-import 'modules/index.dart';
+import 'package:flutter_oxygen/flutter_oxygen.dart';
 
 /// 路由集合
 /// name：路由名称，跳转的时候使用

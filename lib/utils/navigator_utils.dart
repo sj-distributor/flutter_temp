@@ -5,11 +5,11 @@
  */
 
 import 'package:flutter/material.dart' hide Route;
+import 'package:flutter_oxygen/flutter_oxygen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:window_manager/window_manager.dart';
 
 import '../abstracts/index.dart';
-import '../modules/index.dart';
 import '../router.dart';
 
 /// 【NavigatorUtils1工具类，用于路由跳转】\
@@ -29,23 +29,22 @@ class NavigatorUtils {
   // 工厂构造函数，防止误调用
   factory NavigatorUtils() => _instance;
 
-  static final navigatorKey = GlobalKey<NavigatorState>();
+  static final navigatorKey = RouteStrategy().navigatorKey;
 
-  static BuildContext? get navigatorContext =>
-      navigatorKey.currentState?.context;
+  static BuildContext? get navigatorContext => navigatorKey?.currentContext;
 
   /// 当前路由
-  FlutterRoute? currentRoute;
+  FlutterRouter? currentRoute;
 
   /// 路由列表
-  List<FlutterRoute> routes = [];
+  List<FlutterRouter> routes = [];
 
   /// 是否桌面系统
   late bool isDesktop;
 
   /// 初始化方法，传递路由映射
   static Widget Function(BuildContext, Widget?) init({
-    required List<BaseRoutes<FlutterRoute>> routers,
+    required List<BaseRoutes<FlutterRouter>> routers,
     required DeviceTypeEnum deviceType,
     required isDesktop,
     Widget Function(BuildContext, Widget?)? builder,
@@ -84,7 +83,29 @@ class NavigatorUtils {
     //   return;
     // }
 
-    navigatorKey.currentState?.context.goNamed(
+    navigatorContext?.goNamed(
+      route.name,
+      pathParameters: mapValueToString(pathParameters),
+      queryParameters: mapValueToString(queryParameters),
+      extra: extra,
+    );
+  }
+
+  /// 将新页面添加到导航堆栈顶部
+  static void go(
+    Route route, {
+    Map<String, dynamic> pathParameters = const <String, dynamic>{},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
+    Object? extra,
+  }) {
+    /// 以后这里要做桌面端窗口多开的功能
+    /// 如果不是桌面端，直接return
+
+    // if (!_instance.isDesktop) {
+    //   return;
+    // }
+
+    navigatorContext?.goNamed(
       route.name,
       pathParameters: mapValueToString(pathParameters),
       queryParameters: mapValueToString(queryParameters),
@@ -123,7 +144,7 @@ class NavigatorUtils {
   }
 
   /// 获取当前路由
-  FlutterRoute? getCurrentRoute(String? name) {
+  FlutterRouter? getCurrentRoute(String? name) {
     navigateAndSetupWindow(name);
     return _instance.routes.where((item) => item.name == name).firstOrNull;
   }
@@ -131,7 +152,7 @@ class NavigatorUtils {
   /// 刷新当前路由
   refreshCurrentRoute() {
     final currentRoute = _instance.currentRoute;
-    if (currentRoute is FlutterRoute) {
+    if (currentRoute is FlutterRouter) {
       _instance.currentRoute = _instance.getCurrentRoute(currentRoute.name);
     }
   }

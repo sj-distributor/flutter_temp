@@ -85,6 +85,22 @@ class Cache {
     }
   }
 
+  /// 存储一个数组
+  static Future<void> setList<T>(String key, List<T> value) async {
+    String jsonString = jsonEncode(value);
+    await _instance._prefs?.setString(getKey(key), jsonString);
+  }
+
+  /// 获取一个数组，如果不存在返回空数组
+  static List<T>? getList<T>(String key) {
+    String? jsonString = _instance._prefs?.getString(getKey(key));
+    if (jsonString != null) {
+      return (jsonDecode(jsonString) as List).cast<T>();
+    } else {
+      return [];
+    }
+  }
+
   /// 删除指定键的值
   static Future<void> remove(String key) async {
     await _instance._prefs?.remove(getKey(key));

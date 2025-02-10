@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         // 获取设备类型并且初始化路由
         final deviceType = DeviceUtils.getDeviceType(context);
         final routeStrategy = CustomRouter.init(deviceType);
+        routeStrategy.navigatorKey ??= GlobalKey<NavigatorState>();
 
         return MaterialApp.router(
           title: 'flutter_temp',

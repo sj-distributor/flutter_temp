@@ -3,14 +3,14 @@
  * @Email: maiguangyang@163.com
  * @Date: 2024-04-24 20:01:06
  */
+import 'package:flutter_oxygen/flutter_oxygen.dart';
 import 'package:flutter_temp/abstracts/routes_abstracts.dart';
 import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/routes.dart';
-import 'package:flutter_temp/modules/index.dart';
 
 import 'screens/home_screen/home_screen.dart';
 
-class MobileRoutes extends BaseRoutes<FlutterRoute> {
+class MobileRoutes extends BaseRoutes<FlutterRouter> {
   // 私有构造函数
   MobileRoutes._internal();
 
@@ -22,9 +22,9 @@ class MobileRoutes extends BaseRoutes<FlutterRoute> {
 
   // 页面路由
   @override
-  List<FlutterRoute> getRoutes() {
+  List<FlutterRouter> getRoutes() {
     return [
-      FlutterRoute(
+      FlutterRouter(
         name: Routes.home.name,
         path: Routes.home.path,
         title: context?.lang.homePage,

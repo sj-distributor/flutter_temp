@@ -4,11 +4,12 @@
  * @Date: 2024-08-01 09:44:06
  */
 
+import 'package:flutter_oxygen/flutter_oxygen.dart';
+
 import 'routes.dart';
 import 'views/pages/desktop/routes.dart';
 import 'views/pages/mobile/routes.dart';
 
-import 'modules/index.dart';
 import 'middleware/index.dart';
 
 // 导出
@@ -35,9 +36,6 @@ class CustomRouter {
       routeMap: routeMap,
       deviceType: deviceType,
     );
-
-    // 路由初始页面
-    routeStrategy.initRoute = Routes.home;
 
     // 注入中间件
     routeStrategy.observers = [

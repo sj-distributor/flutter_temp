@@ -23,4 +23,4 @@ module:
 	rm -rf packages && rm -rf .git/modules/packages/flutter_oxygen && git submodule update --init --recursive
 
 remove:
-	rm -rf packages && rm -rf .git/modules/packages/flutter_oxygen && git config --remove-section submodule.packages/flutter_oxygen
+	rm -rf packages && rm -rf .git/modules/packages/flutter_oxygen && git config --remove-section submodule.packages/flutter_oxygen && git rm -rf --cached packages/flutter_oxygen

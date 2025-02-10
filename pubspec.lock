@@ -256,13 +256,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_oxygen:
-    dependency: "direct main"
-    description:
-      path: "packages/flutter_oxygen"
-      relative: true
-    source: path
-    version: "0.0.1"
   flutter_smart_dialog:
     dependency: "direct main"
     description:
@@ -953,5 +946,5 @@ packages:
     source: hosted
     version: "2.2.1"
 sdks:
-  dart: ">=3.6.0 <4.0.0"
+  dart: ">=3.4.0 <4.0.0"
   flutter: ">=3.22.0"

@@ -4,6 +4,7 @@
  * @Date: 2024-07-29 14:13:30
  */
 import 'package:flutter/material.dart';
+import 'package:flutter_oxygen/router/router_strategy.dart';
 
 import '../utils/index.dart';
 
@@ -21,6 +22,7 @@ class RouteMiddleware extends RouteObserver<PageRoute<dynamic>> {
     final route = NavigatorUtils().getCurrentRoute(name);
     if (route != NavigatorUtils().currentRoute) {
       NavigatorUtils().currentRoute = NavigatorUtils().getCurrentRoute(name);
+      RouteStrategy().initRoute = NavigatorUtils().currentRoute;
     }
   }
 }

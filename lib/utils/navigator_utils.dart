@@ -69,7 +69,11 @@ class NavigatorUtils {
     };
   }
 
-  /// 将新页面添加到导航堆栈顶部
+  /// 将新页面添加到导航堆栈顶部 \
+  /// 可以后退 \
+  /// pathParameters：路由参数 \
+  /// queryParameters：路由参数 \
+  /// extra：路由参数
   static void push(
     Route route, {
     Map<String, dynamic> pathParameters = const <String, dynamic>{},
@@ -83,7 +87,7 @@ class NavigatorUtils {
     //   return;
     // }
 
-    navigatorContext?.goNamed(
+    navigatorContext?.pushNamed(
       route.name,
       pathParameters: mapValueToString(pathParameters),
       queryParameters: mapValueToString(queryParameters),

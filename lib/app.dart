@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         routeStrategy.navigatorKey ??= GlobalKey<NavigatorState>();
 
         return MaterialApp.router(
-          title: 'flutter_temp',
+          title: Config.appName,
           routerConfig: routeStrategy.generateRoutes(),
           locale: appStore.currentLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,

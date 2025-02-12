@@ -5,12 +5,12 @@
  */
 import 'package:flutter/material.dart';
 import 'package:flutter_temp/abstracts/index.dart';
-import 'package:flutter_temp/common/index.dart';
+import 'package:flutter_temp/config/config.dart';
 
 import 'cache.dart';
 
 class AppStore extends ChangeNotifier implements IAppStore<Locale> {
-  String _lang = Cache.getString("lang") ?? Constant.defaultLanguage;
+  String _lang = Cache.getString("lang") ?? Config.defaultLanguage;
 
   @override
   String get lang => _lang;
@@ -34,9 +34,6 @@ class AppStore extends ChangeNotifier implements IAppStore<Locale> {
     }
     return Locale(t[0], t[1]);
   }
-
-  @override
-  int? themeMode;
 
   @override
   void clear() {}

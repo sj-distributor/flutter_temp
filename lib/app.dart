@@ -6,7 +6,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_temp/abstracts/index.dart';
-import 'package:flutter_temp/common/extensions/index.dart';
 import 'package:flutter_temp/utils/index.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +24,7 @@ class MyApp extends StatelessWidget {
       providers: providers,
       builder: (context, child) {
         final appStore = context.watch<IAppStore>();
+        final themeStore = context.watch<IThemeStore>();
 
         // 获取设备类型并且初始化路由
         final deviceType = DeviceUtils.getDeviceType(context);
@@ -38,33 +38,14 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           debugShowCheckedModeBanner: false,
-          themeMode: CustomTheme(appStore: appStore).themeMode,
-          theme: ThemeData(
-            fontFamily: 'CustomFonts',
-            scaffoldBackgroundColor: context.colorBgContainer,
-            appBarTheme: AppBarTheme(color: context.colorBgContainer),
-            primarySwatch: const MaterialColor(
-              0xdd006fff,
-              <int, Color>{
-                50: Color(0xdd006fff),
-                100: Color(0xdd006fff),
-                200: Color(0xdd006fff),
-                300: Color(0xdd006fff),
-                400: Color(0xdd006fff),
-                500: Color(0xdd006fff),
-                600: Color(0xdd006fff),
-                700: Color(0xdd006fff),
-                800: Color(0xdd006fff),
-                900: Color(0xdd006fff),
-              },
-            ),
-            pageTransitionsTheme: const PageTransitionsTheme(
-              builders: {
-                TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-                TargetPlatform.macOS: NoTransitionPageTransitionsBuilder(),
-              },
-            ),
+          themeMode: themeStore.themeMode,
+          theme: createLightTheme(
+            type: Brightness.light,
+            themeStore: themeStore,
+          ),
+          darkTheme: createLightTheme(
+            type: Brightness.dark,
+            themeStore: themeStore,
           ),
           builder: NavigatorUtils.init(
             // 初始化路由
@@ -88,21 +69,5 @@ class MyApp extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-// 重写路由跳转的动画
-class NoTransitionPageTransitionsBuilder extends PageTransitionsBuilder {
-  const NoTransitionPageTransitionsBuilder();
-
-  @override
-  Widget buildTransitions<String>(
-    PageRoute route,
-    BuildContext context,
-    Animation animation,
-    Animation secondaryAnimation,
-    Widget child,
-  ) {
-    return child;
   }
 }

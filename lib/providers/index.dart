@@ -6,3 +6,4 @@
 export 'cache.dart';
 export 'user_store.dart';
 export 'app_store.dart';
+export 'theme_store.dart';

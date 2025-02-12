@@ -5,9 +5,6 @@
  */
 
 class Constant {
-  /// 默认语言
-  static const String defaultLanguage = "zh";
-
   /// 多语言列表
   static const List<(String, String)> languages = [
     ("简体中文", "zh"),

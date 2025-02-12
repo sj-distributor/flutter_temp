@@ -49,23 +49,25 @@ class ThemeStore extends ChangeNotifier implements IThemeStore {
   bool get isDark => getThemeMode == ThemeMode.dark;
 
   /// 主题色
-  String _primaryColor = Cache.getString("primaryColor") ?? Config.primaryColor;
+  String _primary = Cache.getString("primaryColor") ?? Config.primaryColor;
 
   @override
-  ThemeColor get color => ThemeColor.generate(hexColor(_primaryColor));
+  ThemeColor get color => ThemeColor.generate(hexColor(_primary));
 
   @override
-  Color get primaryColor => color.primary;
+  Color get primary => color.primary;
 
   @override
-  set primaryColor(Color value) {
-    if (value != primaryColor) {
-      _primaryColor = ThemeColor.colorToHex(value);
-      Cache.setString("primaryColorColor", _primaryColor);
+  set primary(Color value) {
+    if (value != primary) {
+      _primary = ThemeColor.colorToHex(value);
+      Cache.setString("primaryColorColor", _primary);
       notifyListeners();
     }
   }
 
+  /// 功能色
+  /// --------------------------------------------------------------------------
   @override
   Color get white => const Color(0xFFFFFFFF);
 
@@ -108,6 +110,88 @@ class ThemeStore extends ChangeNotifier implements IThemeStore {
   @override
   Color get grey => const Color(0xFF666666);
 
+  /// 品牌色
+  /// 后续如果觉得颜色顺序不对，可以进行调换
+  // --------------------------------------------------------------------------
+
+  @override
+  Color get primaryColor => isDark ? color.shade800 : color.shade600;
+
+  @override
+  Color get buttonBackgroundColor => isDark ? color.shade700 : color.shade500;
+
+  @override
+  Color get buttonHoverBackgroundColor =>
+      isDark ? color.shade800 : color.shade400;
+
+  @override
+  Color get buttonActiveBackgroundColor =>
+      isDark ? color.shade900 : color.shade600;
+
+  @override
+  Color get cardBackgroundColor => isDark ? color.shade900 : color.shade200;
+
+  @override
+  Color get cardBorderColor => isDark ? color.shade800 : color.shade300;
+
+  @override
+  Color get linkColor => isDark ? color.shade500 : color.shade700;
+
+  @override
+  Color get linkHoverColor => isDark ? color.shade400 : color.shade600;
+
+  @override
+  Color get inputBorderColor => isDark ? color.shade700 : color.shade300;
+
+  @override
+  Color get inputHoverBorderColor => isDark ? color.shade600 : color.shade400;
+
+  @override
+  Color get inputFocusBorderColor => isDark ? color.shade500 : color.shade500;
+
+  @override
+  Color get warningBackgroundColor => isDark ? color.shade800 : color.shade100;
+
+  @override
+  Color get warningTextColor => isDark ? color.shade100 : color.shade900;
+
+  @override
+  Color get successBackgroundColor => isDark ? color.shade700 : color.shade200;
+
+  @override
+  Color get successTextColor => isDark ? color.shade100 : color.shade800;
+
+  @override
+  Color get errorBackgroundColor => isDark ? color.shade900 : color.shade100;
+
+  @override
+  Color get errorTextColor => isDark ? color.shade100 : color.shade1000;
+
+  @override
+  Color get disabledBackgroundColor => isDark ? color.shade800 : color.shade100;
+
+  @override
+  Color get disabledTextColor => isDark ? color.shade300 : color.shade500;
+
+  @override
+  Color get tableRowHoverBackgroundColor =>
+      isDark ? color.shade800 : color.shade100;
+
+  @override
+  Color get tableRowSelectedBackgroundColor =>
+      isDark ? color.shade700 : color.shade200;
+
+  // @override
+  // Color get dividerColor => isDark ? color.shade700 : color.shade300;
+
+  @override
+  Color get tooltipBackgroundColor => isDark ? color.shade800 : color.shade500;
+
+  @override
+  Color get tooltipTextColor => isDark ? color.shade100 : color.shade1000;
+
+  /// 中性色
+  /// --------------------------------------------------------------------------
   @override
   Color get textTitleColor =>
       isDark ? const Color(0xD9FFFFFF) : const Color(0xE0000000);
@@ -140,8 +224,8 @@ class ThemeStore extends ChangeNotifier implements IThemeStore {
   Color get iconColor =>
       isDark ? const Color(0xD9FFFFFF) : const Color(0xE0000000);
 
-  @override
-  Color get linkColor => blue;
+  // @override
+  // Color get linkColor => blue;
 
   @override
   Color get successColor => green;

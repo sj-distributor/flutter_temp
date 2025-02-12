@@ -31,6 +31,9 @@ abstract class IThemeStore extends ChangeNotifier {
   /// 主题色
   ThemeColor get color;
 
+  /// #FFFFFF 白色 \
+  Color get white;
+
   /// #F5222D 红色 \
   /// 鲜艳的红色，常用于警告或错误提示
   Color get red;
@@ -83,9 +86,78 @@ abstract class IThemeStore extends ChangeNotifier {
   /// 中性灰色，常用于次要文本或边框
   Color get grey;
 
+  /// 主色
+  Color get primary;
+  set primary(Color value);
+
   /// 主题色
   Color get primaryColor;
-  set primaryColor(Color value);
+
+  /// 按钮背景色
+  Color get buttonBackgroundColor;
+
+  /// 按钮 hover 背景色
+  Color get buttonHoverBackgroundColor;
+
+  /// 按钮 active 背景色
+  Color get buttonActiveBackgroundColor;
+
+  /// 卡片背景色
+  Color get cardBackgroundColor;
+
+  /// 卡片边框色
+  Color get cardBorderColor;
+
+  /// 链接颜色
+  Color get linkColor;
+
+  /// 链接 hover 颜色
+  Color get linkHoverColor;
+
+  /// 输入框边框色
+  Color get inputBorderColor;
+
+  /// 输入框 hover 边框色
+  Color get inputHoverBorderColor;
+
+  /// 输入框 focus 边框色
+  Color get inputFocusBorderColor;
+
+  /// 警告背景色
+  Color get warningBackgroundColor;
+
+  /// 警告文字颜色
+  Color get warningTextColor;
+
+  /// 成功背景色
+  Color get successBackgroundColor;
+
+  /// 成功文字颜色
+  Color get successTextColor;
+
+  /// 错误背景色
+  Color get errorBackgroundColor;
+
+  /// 错误文字颜色
+  Color get errorTextColor;
+
+  /// 禁用背景色
+  Color get disabledBackgroundColor;
+
+  /// 禁用文字颜色
+  Color get disabledTextColor;
+
+  /// 表格行 hover 背景色
+  Color get tableRowHoverBackgroundColor;
+
+  /// 表格行选中背景色
+  Color get tableRowSelectedBackgroundColor;
+
+  /// 工具提示背景色
+  Color get tooltipBackgroundColor;
+
+  /// 工具提示文字颜色
+  Color get tooltipTextColor;
 
   /// 文本标题颜色
   Color get textTitleColor;
@@ -110,9 +182,6 @@ abstract class IThemeStore extends ChangeNotifier {
 
   /// 图标颜色
   Color get iconColor;
-
-  /// 链接颜色
-  Color get linkColor;
 
   /// 成功颜色
   Color get successColor;

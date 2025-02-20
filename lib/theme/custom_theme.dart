@@ -5,11 +5,14 @@
  */
 import 'package:flutter/material.dart';
 import 'package:flutter_temp/abstracts/index.dart';
+import 'package:provider/provider.dart';
 
 ThemeData createLightTheme({
   required Brightness type,
-  required IThemeStore themeStore,
+  required BuildContext context,
 }) {
+  final themeStore = context.watch<IThemeStore>();
+
   return ThemeData(
     fontFamily: 'CustomFonts',
     brightness: type == Brightness.light ? Brightness.light : Brightness.dark,

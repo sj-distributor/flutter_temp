@@ -1,3 +1,4 @@
 [submodule "packages/flutter_oxygen"]
 	path = packages/flutter_oxygen
 	url = https://github.com/sj-distributor/flutter_oxygen.git
+  branch = master

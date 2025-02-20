@@ -124,7 +124,6 @@ class _HomeScreenView extends WidgetView<HomeScreen, _HomeScreenController> {
             const SizedBox(height: 10),
             Text(
               userStore.user?.name ?? "无",
-              style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 20),
             ElevatedButton(

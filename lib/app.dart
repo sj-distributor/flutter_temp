@@ -23,8 +23,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: providers,
       builder: (context, child) {
-        final appStore = context.watch<IAppStore>();
-        final themeStore = context.watch<IThemeStore>();
+        final themeMode =
+            context.select<IThemeStore, ThemeMode>((store) => store.themeMode);
+        final currentLocale = context.select<IAppStore, Locale>(
+            (IAppStore store) => store.currentLocale);
 
         // 获取设备类型并且初始化路由
         final deviceType = DeviceUtils.getDeviceType(context);
@@ -34,18 +36,18 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           title: Config.appName,
           routerConfig: routeStrategy.generateRoutes(),
-          locale: appStore.currentLocale,
+          locale: currentLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           debugShowCheckedModeBanner: false,
-          themeMode: themeStore.themeMode,
+          themeMode: themeMode,
           theme: createLightTheme(
             type: Brightness.light,
-            themeStore: themeStore,
+            context: context,
           ),
           darkTheme: createLightTheme(
             type: Brightness.dark,
-            themeStore: themeStore,
+            context: context,
           ),
           builder: NavigatorUtils.init(
             // 初始化路由
